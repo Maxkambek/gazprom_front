@@ -1,13 +1,20 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import Main from "./pages/main/Main";
+import { ReceivingLayout } from "./components";
+import { Main, MonitoringPage } from "./pages";
 
 const App = () => {
   return (
     <>
       <HashRouter>
         <Routes>
+
           <Route path="/" element={<Main />} />
+
+          <Route element={<ReceivingLayout />}>
+            <Route path="/monitoring" element={<MonitoringPage />} />
+          </Route>
+          
         </Routes>
         <ToastContainer />
       </HashRouter>

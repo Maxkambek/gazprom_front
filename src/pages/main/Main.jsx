@@ -2,9 +2,17 @@ import logo from "@/assets/logo.svg";
 import closeEye from "@/assets/closeEye.svg";
 import opneEye from "@/assets/opneEye.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const [isPassword, setIsPassword] = useState(true);
+  const navigate = useNavigate();
+
+  const login = (e) => {
+    e.preventDefault();
+    navigate("/monitoring", { replace: true });
+  };
+
   return (
     <div className="Main">
       <div className="container h-100">
@@ -15,7 +23,7 @@ const Main = () => {
             </div>
           </div>
           <div className="col-lg-5 mx-auto h-100 myCol">
-            <div className="cards">
+            <form onSubmit={login} className="cards">
               <h1>Вход</h1>
               <label htmlFor="Логин">Логин</label>
               <input type="text" id="Логин" className="form-control mb-3" />
@@ -47,7 +55,7 @@ const Main = () => {
               <button className="btn myBtn" type="submit">
                 Войти
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
