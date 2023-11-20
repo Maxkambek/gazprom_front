@@ -3,12 +3,11 @@ import { ToastContainer } from "react-toastify";
 import Main from "./pages/main/Main";
 
 const App = () => {
-  const userRole = "ADMIN"; 
   return (
     <>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Main userRole={userRole} />} />
+          <Route path="/" element={<Main />} />
         </Routes>
         <ToastContainer />
       </HashRouter>

@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
+#root {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin-bottom: 0;
+  }
+
+  img {
+    user-select: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+    outline: none !important;
+
+    &:hover {
+      text-decoration: none !important;
+      color: #666;
+    }
+  }
+
+  ul,
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0 !important;
+  }
+
+  .form-control {
+    &:focus {
+      border-color: #3173ba1c;
+      box-shadow: 0 0 0 0.25rem #3173ba4b;
+    }
+  }
+
+  .cursor {
+    cursor: pointer;
+  }
+
+  .card {
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+
+    .card-body {
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+    }
+  }
+
+  .Main {
+    padding: 32px 0;
+    height: 70vh;
+    overflow: hidden;
+
+    .myCol {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cards {
+      width: 100%;
+      h1 {
+        color: var(--grey-charcoal, #343b4c);
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 40px; /* 111.111% */
+        letter-spacing: -0.36px;
+        margin-bottom: 60px;
+        text-align: center;
+      }
+
+      label,
+      input {
+        color: #62687f;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 153.846% */
+        letter-spacing: 1.04px;
+        text-transform: uppercase;
+      }
+
+      input {
+        color: #222;
+        margin-top: 4px;
+        border-radius: var(--8, 8px);
+        border: 1px solid var(--black-20, #ddd);
+        background: var(--main-white, #fff);
+        text-transform: capitalize;
+      }
+
+      .inputWrap {
+        position: relative;
+      }
+
+      .eye {
+        position: absolute;
+        bottom: 7px;
+        right: 15px;
+        cursor: pointer;
+      }
+
+      .myBtn {
+        color: var(--main-white, #fff);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        letter-spacing: 0.36px;
+        text-transform: uppercase;
+        border-radius: var(--8, 8px);
+        background: #3174ba;
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-top: 40px;
+      }
+    }
+  }
+}
