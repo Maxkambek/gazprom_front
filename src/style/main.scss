@@ -3,6 +3,63 @@
   overflow-x: hidden;
 }
 
+html {
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ffaead12;
+
+    &:hover {
+      background: #ffaead34;
+    }
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 60px;
+    background: #FF6E2E;;
+    transition: all 0.3s ease-in;
+
+    &:hover {
+      background: #ff6d2eb1;;
+    }
+  }
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+
+  mask-size: 100%;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+
+  background-color: #6b7280;
+
+  &.icon-monitoring {
+    mask-image: url("../assets/monitoring.svg");
+    -webkit-mask-image: url("../assets/monitoring.svg");
+  }
+
+  &.icon-list {
+    mask-image: url("../assets/list.svg");
+    -webkit-mask-image: url("../assets/list.svg");
+  }
+
+  &.icon-history {
+    mask-image: url("../assets/history.svg");
+    -webkit-mask-image: url("../assets/history.svg");
+  }
+
+  &.active {
+    background-color: #ff6e2e;
+  }
+}
+
 body {
   font-family: "DM Sans", sans-serif;
 
@@ -130,6 +187,246 @@ body {
         width: 100%;
         padding: 12px;
         margin-top: 40px;
+      }
+    }
+  }
+
+  .LayoutStyle {
+    .left {
+      padding: 28px;
+      box-shadow: 6px -2px 10px #c0c0c07e;
+      height: 100vh;
+      overflow: hidden;
+      overflow-y: auto;
+    }
+    .logo {
+      margin-bottom: 54px;
+      display: block;
+    }
+
+    .link {
+      color: #6b7280;
+      font-size: 14.222px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26.667px; /* 187.5% */
+      letter-spacing: -0.284px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 26px;
+      position: relative;
+      transition: all 0.3s ease-in-out;
+
+      span {
+        margin-right: 8px;
+        transition: all 0.3s ease-in-out;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        right: -28px;
+        top: 0;
+        border-radius: 22.222px;
+        background: #ff6e2e;
+        width: 3px;
+        height: 100%;
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:hover {
+        color: #ff6e2e;
+
+        &::after {
+          opacity: 1;
+        }
+
+        span {
+          background-color: #ff6e2e;
+        }
+      }
+
+      &.active {
+        font-weight: 700;
+
+        &::after {
+          opacity: 1;
+        }
+
+        span {
+          background-color: #ff6e2e;
+        }
+      }
+    }
+
+    .right {
+      padding: 0;
+      background: #f8f8f8;
+      box-shadow: inset 10px 1px 10px 0px #c0c0c024;
+    }
+  }
+
+  .MonitoringNavbar {
+    border-bottom: 1px solid var(--black-10, rgba(28, 28, 28, 0.1));
+    padding: 20px 38px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    .inputWrap {
+      display: flex;
+      align-items: center;
+      border-radius: var(--8, 8px);
+      background: var(--black-5, rgba(28, 28, 28, 0.05));
+      padding: 4px 8px;
+      margin-right: 16px;
+
+      input {
+        color: var(--black-20, rgba(0, 0, 0));
+        font-feature-settings: "cv11" on, "cv01" on, "ss01" on;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px; /* 142.857% */
+        background: transparent;
+        border: none;
+        box-shadow: none !important;
+        padding-left: 7px;
+        padding-top: 8px;
+      }
+    }
+  }
+
+  .MonitoringPage {
+    padding: 28px 24px;
+    background-color: #f2f2f2;
+
+    .Statistics {
+      h1 {
+        margin-bottom: 44px;
+        color: var(--black-100, #1c1c1c);
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px; /* 116.667% */
+        letter-spacing: -0.48px;
+      }
+
+      .filterWrap {
+        border-radius: 12px;
+        background: var(--light-beerus-beerus, #ebebeb);
+        display: flex;
+        align-items: center;
+        width: 430px;
+        justify-content: space-around;
+        padding: 3px;
+        margin-bottom: 28px;
+
+        .filterBtn {
+          color: var(--light-bulma, #000);
+          font-feature-settings: "clig" off, "liga" off;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px; /* 171.429% */
+          padding: 8px 12px;
+          border-radius: var(--8, 8px);
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            cursor: pointer;
+            background-color: #fff;
+            box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+              0px 6px 6px -6px rgba(0, 0, 0, 0.16);
+          }
+        }
+      }
+
+      .cards {
+        background-color: #fff;
+        border-radius: var(--8, 8px);
+        margin-bottom: 24px;
+
+        .cardsTop {
+          padding: 16px var(--20, 20px);
+        }
+        .cardsBottom {
+          padding: 24px 20px;
+        }
+
+        h2 {
+          color: rgba(0, 0, 0, 0.75);
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 24px; /* 150% */
+          letter-spacing: 0.024px;
+        }
+
+        h3 {
+          color: rgba(0, 0, 0, 0.45);
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px; /* 142.857% */
+          letter-spacing: -0.014px;
+        }
+
+        .line {
+          background-color: #d1d9e2;
+          width: 100%;
+          height: 1px;
+        }
+
+        .chart {
+          width: 400px;
+          margin: 0 auto;
+
+          canvas {
+            width: 100%;
+          }
+        }
+
+        .userList {
+          margin-top: 74px;
+        }
+
+        .wrap {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          padding: 10px 0;
+
+          p {
+            color: rgba(0, 0, 0, 0.75);
+            font-size: 15px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 22px; /* 146.667% */
+            letter-spacing: -0.015px;
+
+            span {
+              border-radius: 3px;
+              border: 1px solid rgba(0, 0, 0, 0.1);
+              background: #76ca66;
+              width: 12px;
+              height: 12px;
+              display: inline-block;
+              margin-right: 10px;
+            }
+          }
+
+          h6 {
+            color: rgba(0, 0, 0, 0.75);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 22px; /* 137.5% */
+            letter-spacing: -0.016px;
+          }
+        }
       }
     }
   }
