@@ -49,13 +49,13 @@ const Statistics = () => {
       <h1>Мониторинг</h1>
       <div className="filterWrap">
         <div className="filterBtn">Все</div>
-        <div className="filterBtn">Сегодня</div>
+        <div className="filterBtn active">Сегодня</div>
         <div className="filterBtn">Вчера</div>
         <div className="filterBtn">Неделя</div>
         <div className="filterBtn">Месяц</div>
         <div className="filterBtn">Год </div>
       </div>
-      <div className="cards">
+      <div className="cards CardStyle">
         <div className="cardsTop">
           <h2>Статистика </h2>
           <h3>Поступающих счетчиков по статусам</h3>
