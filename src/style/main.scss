@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 #root {
   overflow-x: hidden;
 }
@@ -93,6 +94,35 @@ body {
     list-style: none;
     margin: 0;
     padding: 0 !important;
+  }
+
+  .myBtn {
+    transition: all 0.4s ease-in-out;
+    border: none !important;
+    color: #fff;
+    font-feature-settings: "clig" off, "liga" off;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 150% */
+    padding: 12px 16px;
+    border-radius: var(--8, 8px);
+    background: #ff6e2e;
+
+    &:hover {
+      transform: scale(0.95);
+      background: #ff6e2e;
+      color: #fff;
+    }
+    &:active {
+      transform: scale(0.9);
+      background: #ff6e2e !important;
+      color: #fff !important;
+    }
+  }
+
+  .zed {
+    z-index: 99;
   }
 
   .form-control {
@@ -298,11 +328,47 @@ body {
     }
   }
 
-  .MonitoringPage {
+  .FilterStyle {
+    border-radius: 12px;
+    background: var(--light-beerus-beerus, #ebebeb);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 3px;
+    margin-bottom: 28px;
+
+    .filterBtn {
+      color: var(--light-bulma, #000);
+      font-feature-settings: "clig" off, "liga" off;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px; /* 171.429% */
+      padding: 8px 12px;
+      border-radius: var(--8, 8px);
+      transition: all 0.3s ease-in-out;
+
+      &:hover,
+      &.active {
+        cursor: pointer;
+        background-color: #fff;
+        box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
+          0px 6px 6px -6px rgba(0, 0, 0, 0.16);
+      }
+    }
+  }
+
+  .RightStyle {
     padding: 28px 24px;
     background-color: #f2f2f2;
+  }
 
+  .MonitoringPage {
     .Statistics {
+      .filterWrap {
+        width: 430px;
+      }
+
       h1 {
         margin-bottom: 44px;
         color: var(--black-100, #1c1c1c);
@@ -311,36 +377,6 @@ body {
         font-weight: 700;
         line-height: 28px; /* 116.667% */
         letter-spacing: -0.48px;
-      }
-
-      .filterWrap {
-        border-radius: 12px;
-        background: var(--light-beerus-beerus, #ebebeb);
-        display: flex;
-        align-items: center;
-        width: 430px;
-        justify-content: space-around;
-        padding: 3px;
-        margin-bottom: 28px;
-
-        .filterBtn {
-          color: var(--light-bulma, #000);
-          font-feature-settings: "clig" off, "liga" off;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 24px; /* 171.429% */
-          padding: 8px 12px;
-          border-radius: var(--8, 8px);
-          transition: all 0.3s ease-in-out;
-
-          &:hover, &.active {
-            cursor: pointer;
-            background-color: #fff;
-            box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.4),
-              0px 6px 6px -6px rgba(0, 0, 0, 0.16);
-          }
-        }
       }
 
       .cards {
@@ -394,6 +430,128 @@ body {
         }
       }
     }
+  }
+
+  .ClientListPage {
+    .filterWrap {
+      width: 270px;
+    }
+
+    .btnWrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h1 {
+        color: var(--black-100, #1c1c1c);
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px; /* 116.667% */
+        letter-spacing: -0.48px;
+      }
+
+      .myBtn {
+        span {
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .myTable {
+      [data-field="status"] {
+        &.MuiDataGrid-cell {
+          background-color: red;
+          border-radius: var(--8, 8px);
+          background: rgba(49, 116, 186, 0.2);
+          text-align: center;
+          color: #000;
+          font-feature-settings: "clig" off, "liga" off;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+        }
+      }
+
+      .MuiDataGrid-renderingZone {
+        // max-height: 300px;
+      }
+
+      .MuiDataGrid-row {
+        margin-bottom: 1px;
+      }
+
+      .MuiDataGrid-cell--textLeft {
+        color: rgba(0, 0, 0, 0.75);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        letter-spacing: -0.014px;
+      }
+
+      .MuiDataGrid-columnHeaderTitle {
+        color: rgba(0, 0, 0, 0.45);
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 500;
+        letter-spacing: -0.013px;
+      }
+    }
+  }
+
+  .ModalStyle {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100vh;
+    overflow-y: auto;
+    background: #fff;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+
+    .close {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #0000008f;
+      z-index: -1;
+    }
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #ffaead12;
+
+      &:hover {
+        background: #ffaead34;
+      }
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 60px;
+      background: #ff6e2e;
+      transition: all 0.3s ease-in;
+
+      &:hover {
+        background: #ff6d2eb1;
+      }
+    }
+  }
+
+  .AddClientModal {
+    background: #fff;
   }
 
   .CardStyle {

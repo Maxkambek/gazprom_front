@@ -1,12 +1,10 @@
 import EmploeesTable from "./components/EmployeesTable";
-import MonitoringNavbar from "./components/MonitoringNavbar";
 import Statistics from "./components/Statistics";
 
 const MonitoringPage = () => {
   return (
     <>
-      <MonitoringNavbar />
-      <div className="MonitoringPage">
+      <div className="MonitoringPage RightStyle">
         <Statistics />
         <EmploeesTable />
       </div>

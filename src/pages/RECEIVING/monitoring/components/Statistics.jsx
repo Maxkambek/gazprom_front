@@ -47,7 +47,7 @@ const Statistics = () => {
   return (
     <div className="Statistics">
       <h1>Мониторинг</h1>
-      <div className="filterWrap">
+      <div className="filterWrap FilterStyle">
         <div className="filterBtn">Все</div>
         <div className="filterBtn active">Сегодня</div>
         <div className="filterBtn">Вчера</div>

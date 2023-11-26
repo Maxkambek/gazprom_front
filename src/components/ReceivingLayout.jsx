@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.svg";
+import MonitoringNavbar from "../pages/RECEIVING/monitoring/components/MonitoringNavbar";
 
 const ReceivingLayout = () => {
   const location = useLocation();
@@ -36,6 +37,7 @@ const ReceivingLayout = () => {
           </Link>
         </div>
         <div className="col-lg-10 right">
+          <MonitoringNavbar />
           <Outlet />
         </div>
       </div>

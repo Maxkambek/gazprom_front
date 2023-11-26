@@ -3,17 +3,19 @@ import bell from "@/assets/bell.svg";
 
 const MonitoringNavbar = () => {
   return (
-    <div className="MonitoringNavbar">
-      <div className="inputWrap">
-        <div className="search">
-          <img src={search} alt="" />
+    <>
+      <div className="MonitoringNavbar">
+        <div className="inputWrap">
+          <div className="search">
+            <img src={search} alt="" />
+          </div>
+          <input type="text" placeholder="Поиск" className="form-control" />
         </div>
-        <input type="text" placeholder="Поиск" className="form-control" />
+        <div className="bell">
+          <img src={bell} alt="" />
+        </div>
       </div>
-      <div className="bell">
-        <img src={bell} alt="" />
-      </div>
-    </div>
+    </>
   );
 };
 

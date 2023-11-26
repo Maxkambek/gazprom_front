@@ -11,12 +11,5 @@ export default defineConfig({
   },
   server: {
     port: 8000,
-  },
-  build: {
-    rollupOptions: {
-      output: {
-        assetFileNames: "_redirects",
-      },
-    },
-  },
+  }
 });
