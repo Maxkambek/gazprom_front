@@ -18,7 +18,7 @@ import {
 } from "./pages";
 
 const App = () => {
-  const userRole = "ADMIN";
+  const userRole = "RECEIVING";
   return (
     <>
       <HashRouter>
