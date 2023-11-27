@@ -16,16 +16,17 @@ import {
   SpecialistClientHistory,
   SpecialistCliestListPage,
 } from "./pages";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const userRole = "RECEIVING";
+  const { userRole } = useSelector((state) => state.auth);
   return (
     <>
       <HashRouter>
         <Routes>
           <Route path="/" element={<Main />} />
 
-          {userRole === "RECEIVING" && (
+          {userRole === "RECEIVER" && (
             <>
               {/* RECEIVING */}
               <Route element={<ReceivingLayout />}>

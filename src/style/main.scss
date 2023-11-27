@@ -381,6 +381,12 @@ body {
       line-height: 28px; /* 116.667% */
       letter-spacing: -0.48px;
     }
+
+    .btnWrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
   }
 
   .MonitoringPage {
@@ -848,6 +854,43 @@ body {
         &.silver {
           background: rgba(0, 0, 0, 0.1);
           color: #000;
+        }
+      }
+    }
+
+    &.tools {
+      .cards {
+        width: 35%;
+        height: 88vh;
+      }
+      h1 {
+        margin-bottom: 0;
+      }
+
+      label {
+        color: var(--light-trunks, #999ca0);
+        font-feature-settings: "clig" off, "liga" off;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 150% */
+        padding: 0 0 12px;
+      }
+
+      input {
+        margin-bottom: 16px;
+      }
+
+      .btnWrap {
+        padding: 0 24px;
+
+        .btn {
+          margin: 0;
+          width: 100%;
+
+          span {
+            margin-right: 10px;
+          }
         }
       }
     }

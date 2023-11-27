@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { API_PATH } from "@/constants";
-import { TOKEN } from "../../constants";
-import { useDispatch } from "react-redux";
-import { setToken } from "../../redux/authSlice";
+import { TOKEN, USER_ROLE } from "../../constants";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setToken } from "../../redux/authSlice";
 
 const Main = () => {
   const [isPassword, setIsPassword] = useState(true);
@@ -16,7 +16,7 @@ const Main = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch();
 
   const logIn = (e) => {
     e.preventDefault();
@@ -30,31 +30,40 @@ const Main = () => {
         const startIndex = inputString.indexOf(": ") + 2;
         const endIndex = inputString.indexOf(">");
         const extractedValue = inputString.substring(startIndex, endIndex);
+
         localStorage.setItem(TOKEN, extractedValue);
-        dispatch(setToken({ extractedValue }));
+        localStorage.setItem(USER_ROLE, res.data.role.toUpperCase());
 
+        // dispatch(setToken({ extractedValue }));
 
-        // if (res.data.role === "receiver") {
-        //   navigate("/monitoring");
-        // }
-        // if (res.data.role === "specialist") {
-        //   navigate("/specialist-client-list");
-        // }
-        // if (res.data.role === "accountant") {
-        //   navigate("/accountant-client-list");
-        // }
-        // if (res.data.role === "client") {
-        //   navigate("/client");
-        // }
-        // if (res.data.role === "uz_standard") {
-        //   navigate("/uz_standard");
-        // }
-        // if (res.data.role === "inspector_1") {
-        //   navigate("/inspector_1");
-        // }
-        // if (res.data.role === "inspector_2") {
-        //   navigate("/inspector_2");
-        // }
+        if (res.data.role === "receiver") {
+          navigate("/monitoring", { replace: true });
+          window.location.reload();
+        }
+        if (res.data.role === "specialist") {
+          navigate("/specialist-client-list", { replace: true });
+          window.location.reload();
+        }
+        if (res.data.role === "accountant") {
+          navigate("/accountant-client-list", { replace: true });
+          window.location.reload();
+        }
+        if (res.data.role === "client") {
+          navigate("/client", { replace: true });
+          window.location.reload();
+        }
+        if (res.data.role === "uz_standard") {
+          navigate("/uz_standard", { replace: true });
+          window.location.reload();
+        }
+        if (res.data.role === "inspector_1") {
+          navigate("/inspector_1", { replace: true });
+          window.location.reload();
+        }
+        if (res.data.role === "inspector_2") {
+          navigate("/inspector_2", { replace: true });
+          window.location.reload();
+        }
       })
       .catch((err) => {
         if (err.response.status === 302) {

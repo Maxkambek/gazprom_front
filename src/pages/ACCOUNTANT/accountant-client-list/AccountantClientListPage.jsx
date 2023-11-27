@@ -127,7 +127,9 @@ const AccountantClientListPage = () => {
 
           <div className="btnWrap">
             <button className="btn cardsBtn silver">Скачать PDF</button>
-            <button onClick={() => setIsOpen(false)} className="btn cardsBtn">Отправить</button>
+            <button onClick={() => setIsOpen(false)} className="btn cardsBtn">
+              Отправить
+            </button>
           </div>
         </div>
         <div onClick={() => setIsOpen(false)} className="close"></div>
