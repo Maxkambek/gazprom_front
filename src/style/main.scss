@@ -46,6 +46,11 @@ html {
     -webkit-mask-image: url("../assets/monitoring.svg");
   }
 
+  &.icon-tools {
+    mask-image: url("../assets/tools.svg");
+    -webkit-mask-image: url("../assets/tools.svg");
+  }
+
   &.icon-list {
     mask-image: url("../assets/list.svg");
     -webkit-mask-image: url("../assets/list.svg");
@@ -367,6 +372,15 @@ body {
   .RightStyle {
     padding: 28px 24px;
     background-color: #f2f2f2;
+
+    h1 {
+      color: var(--black-100, #1c1c1c);
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 28px; /* 116.667% */
+      letter-spacing: -0.48px;
+    }
   }
 
   .MonitoringPage {
@@ -479,9 +493,9 @@ body {
         }
       }
 
-      .MuiDataGrid-renderingZone {
-        // max-height: 300px;
-      }
+      // .MuiDataGrid-renderingZone {
+      //   // max-height: 300px;
+      // }
 
       .MuiDataGrid-row {
         margin-bottom: 1px;
@@ -699,14 +713,148 @@ body {
       justify-content: center;
       margin-top: 5px;
       margin-right: 10px;
+      cursor: pointer;
 
       &.status-green {
         background: rgba(118, 202, 102, 0.3);
       }
 
+      &.status-blue {
+        background: rgba(49, 116, 186, 0.2);
+      }
+
       &.status-red {
         background: rgba(255, 110, 46, 0.2);
       }
+
+      &.status-yellow {
+        background: rgba(255, 199, 114, 0.2);
+      }
+
+      &.status-red {
+        background: rgba(255, 110, 46, 0.2);
+      }
+
+      &.status-pink {
+        background: rgba(207, 84, 188, 0.2);
+      }
+    }
+  }
+
+  .accountantModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #00000078;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+
+    .cards {
+      background: #fff;
+      width: 80%;
+      height: 80vh;
+      border-radius: 15px;
+      z-index: 99;
+
+      .cardsTop {
+        padding: 16px 24px;
+        border-bottom: 1px solid #d1d1d1;
+      }
+
+      .topWrap {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+      }
+
+      .cardsBody {
+        padding: 24px;
+      }
+    }
+
+    h1 {
+      color: var(--light-bulma, #000);
+      font-feature-settings: "clig" off, "liga" off;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 32px; /* 160% */
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      color: #222;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px; /* 142.857% */
+      letter-spacing: 0.1px;
+    }
+
+    h3 {
+      color: #333;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0.1px;
+    }
+
+    .table {
+      td {
+        vertical-align: middle;
+        color: #222;
+        font-weight: 700;
+      }
+
+      th {
+        vertical-align: middle;
+      }
+    }
+
+    .close {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .btnWrap {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      padding-right: 24px;
+
+      .cardsBtn {
+        font-feature-settings: "clig" off, "liga" off;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+        padding: 12px 16px;
+        border-radius: var(--8, 8px);
+        background: #ff6e2e;
+        color: #fff;
+        margin-left: 24px;
+
+        &.silver {
+          background: rgba(0, 0, 0, 0.1);
+          color: #000;
+        }
+      }
+    }
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
     }
   }
 
@@ -715,6 +863,13 @@ body {
       tr {
         cursor: pointer;
       }
+    }
+  }
+
+  .AccountantClientListPage {
+    .filterWrap {
+      width: 220px;
+      margin-top: 44px;
     }
   }
 }
