@@ -1,14 +1,215 @@
+import plus from "@/assets/plus.svg";
+
 const AddClientModal = () => {
   return (
     <div className="AddClientModal zed">
-      <h1>Добавить клиент</h1>
-      <div className="formWrap">
-        <label htmlFor="Наименование организации:">
-          Наименование организации:
-        </label>
-        <input type="text" className="form-control" />
+      <div className="modalTop">
+        <h1>Добавить клиент</h1>
       </div>
-      <h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores hic dolores eum sit vitae praesentium atque, accusantium ipsam tempore minima veritatis. Iste doloremque hic rem aperiam maxime incidunt, in, dolorem sed dolor alias ipsam excepturi vitae asperiores. Eaque pariatur laudantium praesentium delectus aut, soluta, ex atque omnis, expedita earum facere adipisci minima voluptate sit! Sint, dolore nesciunt ullam ipsum reiciendis nihil aliquid obcaecati veritatis ex cum quidem vero consectetur alias excepturi nisi non molestiae voluptatum. Quos dolorum quisquam id nesciunt quo nihil delectus fugit ullam corporis aliquid, adipisci perspiciatis alias! Maxime, illum architecto asperiores delectus perferendis sed, praesentium libero nulla facilis accusantium vero necessitatibus. Alias quod numquam deleniti. Inventore harum, ipsa at, molestiae, ipsum illo odio explicabo porro aliquam possimus perferendis odit! Nostrum inventore quisquam obcaecati blanditiis voluptates numquam, neque quia, laborum corporis similique porro optio aut ratione in, laudantium itaque vero! Itaque soluta consequatur ullam nam inventore sed esse voluptatum cupiditate voluptatem minima ipsa eius quisquam eveniet saepe maiores omnis, numquam sapiente sint consequuntur! Maxime ipsa soluta qui numquam? Animi sit dolorum nesciunt reprehenderit quia ipsa blanditiis culpa veritatis a voluptas, non doloremque vero recusandae atque, quos fuga officiis deserunt sint? Repellendus labore veniam possimus optio obcaecati in, dolor ea harum facilis, odit vel maiores incidunt, totam voluptates iure eveniet corrupti laboriosam tempora dolorem recusandae temporibus fugiat molestiae exercitationem minima? Praesentium ut, expedita veniam architecto minima itaque vitae voluptatum laborum accusantium ipsum ipsam facilis voluptate nihil! Temporibus culpa officiis autem at animi suscipit sequi dolorum consequuntur, iusto consequatur! Eveniet saepe recusandae vero obcaecati error tempore quae esse itaque sapiente similique quis, quisquam placeat nemo neque consequuntur excepturi. Error natus corporis iure! Alias earum, doloremque distinctio quibusdam asperiores doloribus quasi voluptatem quidem, praesentium aspernatur modi blanditiis laudantium, nam ut tempore atque cumque ex harum? Mollitia eum quae harum repellendus quo tempore voluptatum voluptates eligendi dignissimos doloremque? Perferendis animi saepe, consequatur consectetur distinctio fugiat nisi a similique et. Rem architecto reiciendis, maiores deserunt nihil eius ducimus? Nam quia consequuntur quasi suscipit! Voluptatem voluptatum, necessitatibus eligendi tempore veniam et officia ad hic dolores fuga alias, eius expedita quidem culpa. Pariatur minima et atque tenetur doloribus natus officia dicta fugiat similique exercitationem eveniet id, quam dolor error perspiciatis quisquam distinctio illum cum repellat, beatae voluptas! Sed expedita, dicta doloremque minus, ratione ipsa repellat mollitia ex accusantium est dolores necessitatibus quidem iure asperiores? Quasi, hic dolorum quam quo reprehenderit odit quibusdam laboriosam ratione fuga, deleniti praesentium consectetur voluptas aperiam laborum earum repellendus similique temporibus ab? Repudiandae nam voluptas sit, minima officia eos atque incidunt voluptatibus porro quisquam deleniti, iste excepturi quaerat perferendis, et tempora! Eius, soluta aspernatur earum sit mollitia, eum deleniti dolore aperiam, corporis ullam eaque doloribus ratione. Dolore similique sunt suscipit laborum, eum necessitatibus reiciendis ipsa, culpa modi repellat cumque aliquid nesciunt illum sed earum ipsam. Esse, vero quae aspernatur a dolores aliquam ut ipsam quas totam sunt! Sit, excepturi accusamus facere vel laborum numquam quasi minima totam incidunt modi consectetur labore deleniti, quia nisi alias tenetur? Iusto quisquam similique debitis voluptas sapiente sunt facilis eius cupiditate a magnam at totam accusamus quam inventore officiis nisi laudantium, maxime libero quas aut! Atque libero doloribus laborum aperiam laboriosam cumque. Reprehenderit est hic reiciendis architecto. Labore porro incidunt unde molestias? Architecto nobis quaerat fuga tempora cumque illo temporibus illum accusamus iste sit unde esse fugiat, officia fugit quas adipisci provident, maxime in repellat! Quibusdam accusamus reprehenderit quos, officia odio sapiente fugit voluptatum sit veritatis. Veniam tempora, totam accusantium deserunt voluptatem facilis ea minus praesentium quisquam excepturi rerum, iure, quod illum. Distinctio quisquam error officiis esse velit nisi nobis autem fuga incidunt aliquam quas eligendi, sapiente illum asperiores numquam fugit! Officia consequuntur, recusandae nihil corporis vel assumenda sapiente quas cumque veritatis qui doloribus consequatur voluptatum culpa earum, dignissimos saepe pariatur voluptate asperiores obcaecati, et eos sunt soluta harum magni. Ab assumenda doloribus illo quo delectus eaque minima esse porro quaerat nesciunt voluptate consequuntur exercitationem nostrum repellendus unde, minus aspernatur nisi, cum rerum officia. Earum dolores quam excepturi quibusdam illo laborum hic illum iure, quos, dolor officia adipisci a fuga? Iste eligendi expedita omnis voluptate nemo odit obcaecati reiciendis magnam mollitia nobis architecto dolores cupiditate, ea, corporis doloribus porro temporibus. Delectus consequuntur in facilis inventore iure itaque nihil voluptatum distinctio! Eius facere enim, molestiae modi sed animi adipisci, pariatur sunt corporis nulla, officia minus dicta repellendus incidunt! Amet hic inventore, aperiam vero dolore pariatur ad non suscipit dicta, qui similique provident labore quis nam quo temporibus nesciunt commodi. Facilis perferendis et aperiam eveniet sed illum. Recusandae assumenda doloribus, fuga rem aliquam, ipsa nesciunt officiis itaque incidunt et harum cum aperiam accusamus exercitationem libero blanditiis numquam nihil commodi hic? Illo sapiente asperiores eius temporibus perferendis, doloribus voluptate nulla qui dignissimos, voluptas quidem veniam quae quod itaque, reiciendis fugiat possimus ad neque. Delectus, cupiditate quia. Vitae placeat impedit nostrum quis expedita nulla dolor. Facere possimus quia neque id autem voluptatibus, enim accusantium nemo voluptates consequuntur quae consectetur tempore aliquid nisi quaerat. Architecto quidem iusto tempore alias quae omnis vel, corrupti quos maiores eligendi at molestiae similique commodi et excepturi provident repellendus velit voluptates nisi. Quaerat, voluptatum quod laborum labore eos quia illo porro eum architecto. Pariatur ut soluta deserunt aut voluptatem aperiam possimus exercitationem eos cupiditate molestias quidem assumenda provident illum necessitatibus accusamus perferendis perspiciatis enim, accusantium tempore blanditiis non! Sit adipisci consequuntur dolore ratione doloremque saepe obcaecati aliquid asperiores facere quisquam ab exercitationem sequi quidem architecto, ad ipsa et ea incidunt repellendus voluptatem totam dolores. Neque accusamus cupiditate error odio magni aliquid tenetur nesciunt porro, nostrum dolorum praesentium nobis debitis, excepturi ducimus. Natus veniam officiis accusamus, facilis modi voluptatibus at aut delectus velit aliquam deserunt unde doloremque molestiae culpa magni quidem maxime libero odit! Ea molestias minus fuga numquam fugit sint, incidunt odio vero natus. Repellat labore odio vero ducimus harum excepturi reprehenderit assumenda praesentium sed molestias, magni, aspernatur voluptatum nobis voluptas ut earum quam cumque eveniet tempore corrupti nulla rerum mollitia? Laudantium soluta optio sequi odio distinctio accusantium cupiditate quibusdam nesciunt, aliquid officia quaerat. Doloribus, error!</h1>
+      <div className="modalBody">
+        <div className="formWrap">
+          <label htmlFor="Наименование организации:">
+            Наименование организации:
+          </label>
+          <input
+            type="text"
+            id="Наименование организации:"
+            className="form-control"
+          />
+        </div>
+        <div className="formWrap">
+          <label htmlFor="Дата">Дата</label>
+          <input id="Дата" type="datetime-local" className="form-control" />
+        </div>
+        <div className="formWrap">
+          <label htmlFor="Статус">Статус</label>
+          <input type="text" id="Статус" className="form-control" />
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Марка счетчика газа:">Марка счетчика газа:</label>
+          <input
+            type="text"
+            id="Марка счетчика газа:"
+            className="form-control"
+          />
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Заводские номера: датчик давления:">
+            Заводские номера: датчик давления:
+          </label>
+          <input
+            type="text"
+            id="Заводские номера: датчик давления:"
+            className="form-control"
+          />
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="датчик температуры:">Датчик температуры:</label>
+          <input
+            type="text"
+            id="датчик температуры:"
+            className="form-control"
+          />
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Сертификат последней поверки:">
+            Сертификат последней поверки:
+          </label>
+          <select id="Сертификат последней поверки:" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Паспорта газового счетчика:">
+            Паспорта газового счетчика:
+          </label>
+          <select id="Паспорта газового счетчика:" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Паспорт блока коррекции:">
+            Паспорт блока коррекции:
+          </label>
+          <select id="Паспорт блока коррекции:" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label
+            htmlFor="Акт (Рай.газ, гор.газ, обл.газ) о снятии счетчик газа на гос. поверку с показаниями
+счетчика, печатью или штампом:"
+          >
+            Акт (Рай.газ, гор.газ, обл.газ) о снятии счетчик газа на гос.
+            поверку с показаниями счетчика, печатью или штампом:
+          </label>
+          <select
+            id="Акт (Рай.газ, гор.газ, обл.газ) о снятии счетчик газа на гос. поверку с показаниями
+счетчика, печатью или штампом:"
+            className="form-control"
+          >
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label
+            htmlFor="Техническое состояние счетчика при поступлении в метрологический центр «GAZ TEXNO PRIBOR» МЧЖ.
+Наличие пломб: счетный механизм"
+          >
+            Техническое состояние счетчика при поступлении в метрологический
+            центр «GAZ TEXNO PRIBOR» МЧЖ. Наличие пломб: счетный механизм
+          </label>
+          <select
+            id="Техническое состояние счетчика при поступлении в метрологический центр «GAZ TEXNO PRIBOR» МЧЖ.
+Наличие пломб: счетный механизм"
+            className="form-control"
+          >
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="блок коррекции ДР">блок коррекции ДР</label>
+          <select id="блок коррекции ДР" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="ДТ">ДТ</label>
+          <select id="ДТ" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="ДД">ДД</label>
+          <select id="ДД" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label
+            htmlFor="Er 3000000
+Внештатные ситуации:"
+          >
+            Er 3000000 Внештатные ситуации:
+          </label>
+          <select
+            id="Er 3000000
+Внештатные ситуации:"
+            className="form-control"
+          >
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Визуальные повреждения:">
+            Визуальные повреждения:
+          </label>
+          <select id="Визуальные повреждения:" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Механические повреждения:">
+            Механические повреждения:
+          </label>
+          <select id="Механические повреждения:" className="form-control">
+            <option value="есть">есть</option>
+            <option value="нет">нет</option>
+          </select>
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Заключения:">Заключения:</label>
+          <input type="text" id="Заключения:" className="form-control" />
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Показания:">Показания:</label>
+          <input type="text" id="Показания:" className="form-control" />
+        </div>
+
+        <div className="formWrap">
+          <label htmlFor="Счетного механизма:">Счетного механизма:</label>
+          <input
+            type="text"
+            id="Счетного механизма:"
+            className="form-control"
+          />
+        </div>
+      </div>
+
+      <div className="modalFooter">
+        <button className="btn myBtn d-block w-100">
+          <span>
+            <img src={plus} alt="" />
+          </span>
+          Добавить клиент
+        </button>
+      </div>
     </div>
   );
 };

@@ -130,6 +130,12 @@ body {
       border-color: #3173ba1c;
       box-shadow: 0 0 0 0.25rem #3173ba4b;
     }
+
+    &:disabled {
+      border-color: #3174ba1a;
+      border-radius: var(--8, 8px);
+      background: #3174ba1a;
+    }
   }
 
   .cursor {
@@ -512,6 +518,49 @@ body {
     visibility: hidden;
     transition: all 0.4s ease;
 
+    .modalTop {
+      padding: 16px 24px;
+
+      h1 {
+        color: var(--light-bulma, #000);
+        font-feature-settings: "clig" off, "liga" off;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32px; /* 160% */
+      }
+    }
+
+    .modalBody {
+      padding: 36px 24px;
+      box-shadow: inset 0px 0px 10px 0px #c0c0c0a6;
+
+      .formWrap {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        margin-bottom: 24px;
+
+        label,
+        .form-control {
+          width: 48%;
+        }
+
+        label {
+          color: var(--light-trunks, #999ca0);
+          font-feature-settings: "clig" off, "liga" off;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px; /* 150% */
+        }
+      }
+    }
+
+    .modalFooter {
+      padding: 24px;
+    }
+
     .close {
       position: fixed;
       top: 0;
@@ -526,7 +575,7 @@ body {
       opacity: 1;
       visibility: visible;
     }
-    
+
     &::-webkit-scrollbar {
       width: 4px;
     }
@@ -591,11 +640,81 @@ body {
     }
   }
 
+  .SpecialistCliestListPage {
+    h1 {
+      margin-bottom: 44px;
+    }
+
+    .filterWrap {
+      width: 720px;
+    }
+  }
+
+  .ClientModal {
+    background-color: #fff;
+  }
+
   .MuiDataGrid-root {
     border: 0 !important;
   }
 
   .TableStyle {
-    // .cards
+    background-color: #fff;
+    td,
+    th {
+      padding: 14px;
+    }
+
+    tr {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.152);
+    }
+
+    td {
+      color: rgba(0, 0, 0, 0.45);
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px; /* 138.462% */
+      letter-spacing: -0.013px;
+    }
+
+    th {
+      color: rgba(0, 0, 0, 0.75);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 142.857% */
+      letter-spacing: -0.014px;
+    }
+
+    .status {
+      padding: 8px 12px;
+      border-radius: var(--8, 8px);
+      font-weight: 600;
+      text-align: center;
+      vertical-align: middle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5px;
+      margin-right: 10px;
+
+      &.status-green {
+        background: rgba(118, 202, 102, 0.3);
+      }
+
+      &.status-red {
+        background: rgba(255, 110, 46, 0.2);
+      }
+    }
+  }
+
+  .SpecialistCliestListPage {
+    tbody {
+      tr {
+        cursor: pointer;
+      }
+    }
   }
 }
