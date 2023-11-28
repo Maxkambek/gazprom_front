@@ -1,7 +1,34 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { API_PATH } from "../../../constants";
+// import Autocomplete from "@mui/material/Autocomplete";
+// import Checkbox from "@mui/material/Checkbox";
+// import TextField from "@mui/material/TextField";
 
 const SpecialistCliestListPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [orders, setOrders] = useState([]);
+  const [products, setProducts] = useState([]);
+  const [order, setOrder] = useState({});
+
+  useEffect(() => {
+    const getOrders = async () => {
+      const { data } = await axios(API_PATH + "/main/orders/");
+      setOrders(data);
+    };
+    const getProducts = async () => {
+      const { data } = await axios(API_PATH + "/main/product-list/");
+      setProducts(data);
+    };
+    getOrders();
+    getProducts();
+  }, []);
+
+  const getOrder = (item) => {
+    setOrder(item);
+  };
+
   return (
     <>
       <div className="SpecialistCliestListPage RightStyle">
@@ -27,110 +54,29 @@ const SpecialistCliestListPage = () => {
             </tr>
           </thead>
           <tbody>
-            <tr onClick={() => setIsOpen(true)} className="">
-              <th>1</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-green">Оплаченно</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
-            <tr className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th className="status status-red">НЕ ОПЛАЧЕННО</th>
-            </tr>
+            {orders &&
+              orders.map((item) => (
+                <tr
+                  key={item.id}
+                  onClick={() => {
+                    setIsOpen(true), getOrder(item);
+                  }}
+                  className=""
+                >
+                  <th>{item.id}</th>
+                  <th>{item.name_org}</th>
+                  <th>{item.created_time}</th>
+                  <th>{item.meter_brand}</th>
+                  <th>{item.serial_number}</th>
+                  <th
+                    className={`status ${
+                      item.is_paid ? "status-green" : "status-red"
+                    }`}
+                  >
+                    {item.is_paid ? "Оплаченно" : "Не оплачено"}
+                  </th>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
@@ -145,24 +91,40 @@ const SpecialistCliestListPage = () => {
               <label htmlFor="Наименование организации:">
                 Наименование организации:
               </label>
-              <input  disabled
+              <input
+                disabled
                 type="text"
+                value={order.name_org}
                 id="Наименование организации:"
                 className="form-control"
               />
             </div>
             <div className="formWrap">
               <label htmlFor="Дата">Дата</label>
-              <input  disabled id="Дата" type="datetime-local" className="form-control" />
+              <input
+                value={order.created_time}
+                disabled
+                id="Дата"
+                type="text"
+                className="form-control"
+              />
             </div>
             <div className="formWrap">
               <label htmlFor="Статус">Статус</label>
-              <input  disabled type="text" id="Статус" className="form-control" />
+              <input
+                value={order.status}
+                disabled
+                type="text"
+                id="Статус"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Марка счетчика газа:">Марка счетчика газа:</label>
-              <input  disabled
+              <input
+                value={order.meter_brand}
+                disabled
                 type="text"
                 id="Марка счетчика газа:"
                 className="form-control"
@@ -173,7 +135,9 @@ const SpecialistCliestListPage = () => {
               <label htmlFor="Заводские номера: датчик давления:">
                 Заводские номера: датчик давления:
               </label>
-              <input  disabled
+              <input
+                value={order.serial_number}
+                disabled
                 type="text"
                 id="Заводские номера: датчик давления:"
                 className="form-control"
@@ -182,7 +146,9 @@ const SpecialistCliestListPage = () => {
 
             <div className="formWrap">
               <label htmlFor="датчик температуры:">Датчик температуры:</label>
-              <input  disabled
+              <input
+                value={order.temp_sensor}
+                disabled
                 type="text"
                 id="датчик температуры:"
                 className="form-control"
@@ -193,33 +159,39 @@ const SpecialistCliestListPage = () => {
               <label htmlFor="Сертификат последней поверки:">
                 Сертификат последней поверки:
               </label>
-              <select  disabled
+              <input
+                value={order.latest_certificate ? "Есть" : "Нет"}
+                disabled
+                type="text"
                 id="Сертификат последней поверки:"
                 className="form-control"
-              >
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Паспорта газового счетчика:">
                 Паспорта газового счетчика:
               </label>
-              <select  disabled id="Паспорта газового счетчика:" className="form-control">
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              <input
+                value={order.passport_meter ? "Есть" : "Нет"}
+                disabled
+                type="text"
+                id="Паспорта газового счетчика:"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Паспорт блока коррекции:">
                 Паспорт блока коррекции:
               </label>
-              <select  disabled id="Паспорт блока коррекции:" className="form-control">
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              <input
+                value={order.correction_block_passport ? "Есть" : "Нет"}
+                disabled
+                type="text"
+                id="Паспорт блока коррекции:"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
@@ -230,14 +202,14 @@ const SpecialistCliestListPage = () => {
                 Акт (Рай.газ, гор.газ, обл.газ) о снятии счетчик газа на гос.
                 поверку с показаниями счетчика, печатью или штампом:
               </label>
-              <select  disabled
+              <input
+                value={order.verification_with_stamp ? "Есть" : "Нет"}
+                disabled
+                type="text"
                 id="Акт (Рай.газ, гор.газ, обл.газ) о снятии счетчик газа на гос. поверку с показаниями
 счетчика, печатью или штампом:"
                 className="form-control"
-              >
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              />
             </div>
 
             <div className="formWrap">
@@ -248,38 +220,47 @@ const SpecialistCliestListPage = () => {
                 Техническое состояние счетчика при поступлении в метрологический
                 центр «GAZ TEXNO PRIBOR» МЧЖ. Наличие пломб: счетный механизм
               </label>
-              <select  disabled
+              <input
+                value={order.gaz_pribor_stamp ? "Есть" : "Нет"}
+                disabled
+                type="text"
                 id="Техническое состояние счетчика при поступлении в метрологический центр «GAZ TEXNO PRIBOR» МЧЖ.
 Наличие пломб: счетный механизм"
                 className="form-control"
-              >
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="блок коррекции ДР">блок коррекции ДР</label>
-              <select  disabled id="блок коррекции ДР" className="form-control">
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              <input
+                value={order.block_correction_dp ? "Есть" : "Нет"}
+                disabled
+                type="text"
+                id="блок коррекции ДР"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="ДТ">ДТ</label>
-              <select  disabled id="ДТ" className="form-control">
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              <input
+                value={order.dt ? "Есть" : "Нет"}
+                disabled
+                type="text"
+                id="ДТ"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
-              <label htmlFor="ДД">ДД</label>
-              <select  disabled id="ДД" className="form-control">
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              <label htmlFor="dd">ДД</label>
+              <input
+                value={order.dd ? "Есть" : "Нет"}
+                disabled
+                type="text"
+                id="dd"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
@@ -289,51 +270,109 @@ const SpecialistCliestListPage = () => {
               >
                 Er 3000000 Внештатные ситуации:
               </label>
-              <select  disabled
+              <input
+                value={order.er_300000 ? "Есть" : "Нет"}
+                disabled
+                type="text"
                 id="Er 3000000
 Внештатные ситуации:"
                 className="form-control"
-              >
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Визуальные повреждения:">
-                Визуальные повреждения:
+                Визуальные повреждения
               </label>
-              <select  disabled id="Визуальные повреждения:" className="form-control">
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              <input
+                value={order.visual_damage ? "Есть" : "Нет"}
+                disabled
+                type="text"
+                id="Визуальные повреждения:"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Механические повреждения:">
                 Механические повреждения:
               </label>
-              <select  disabled id="Механические повреждения:" className="form-control">
-                <option value="есть">есть</option>
-                <option value="нет">нет</option>
-              </select>
+              <input
+                value={order.mechanical_damage ? "Есть" : "Нет"}
+                disabled
+                type="text"
+                id="Механические повреждения:"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Заключения:">Заключения:</label>
-              <input  disabled type="text" id="Заключения:" className="form-control" />
+              <input
+                value={order.conclusion}
+                disabled
+                type="text"
+                id="Заключения:"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Показания:">Показания:</label>
-              <input  disabled type="text" id="Показания:" className="form-control" />
+              <input
+                value={order.indications}
+                disabled
+                type="text"
+                id="Показания:"
+                className="form-control"
+              />
             </div>
 
             <div className="formWrap">
               <label htmlFor="Счетного механизма:">Счетного механизма:</label>
-              <input  disabled
+              <input
+                value={order.counting_mechanism}
+                disabled
                 type="text"
                 id="Счетного механизма:"
+                className="form-control"
+              />
+            </div>
+
+            {/* <Autocomplete
+              multiple
+              id="checkboxes-tags-demo"
+              options={products}
+              disableCloseOnSelect
+              getOptionLabel={(option) => option.name}
+              renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                  <Checkbox
+                    // icon={icon}
+                    // checkedIcon={checkedIcon}
+                    style={{ marginRight: 8 }}
+                    checked={selected}
+                  />
+                  {option.name}
+                </li>
+              )}
+              style={{ width: 500 }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Checkboxes"
+                  placeholder="Favorites"
+                />
+              )}
+            /> */}
+
+            <div className="formWrap">
+              <label htmlFor="Замена комплектующих:">
+                Замена комплектующих:
+              </label>
+              <input
+                type="text"
+                id="Замена комплектующих:"
                 className="form-control"
               />
             </div>

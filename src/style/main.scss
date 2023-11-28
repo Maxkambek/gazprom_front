@@ -437,11 +437,38 @@ body {
             span {
               border-radius: 3px;
               border: 1px solid rgba(0, 0, 0, 0.1);
-              background: #76ca66;
               width: 12px;
               height: 12px;
               display: inline-block;
               margin-right: 10px;
+
+              &.green {
+                background: #76ca66;
+              }
+
+              &.blue {
+                background-color: #3174BA;
+              }
+
+              &.orange {
+                background-color: #FFC772;
+              }
+
+              &.dark-orange {
+                background-color: #FF6E2E;
+              }
+
+              &.red {
+                background-color: #DA1E28;
+              }
+
+              &.pink {
+                background-color: #CF54BC;
+              }
+
+              &.dark-blue {
+                background-color: #9461FF;
+              }
             }
           }
 

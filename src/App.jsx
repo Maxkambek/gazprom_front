@@ -2,7 +2,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import {
   AccountantLayout,
-  NotFound,
+  // NotFound,
   ReceivingLayout,
   SpecialistLayout,
 } from "./components";
@@ -71,7 +71,7 @@ const App = () => {
               {/* ACCOUNTANT */}
             </>
           )}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Main />} />
         </Routes>
         <ToastContainer />
       </HashRouter>

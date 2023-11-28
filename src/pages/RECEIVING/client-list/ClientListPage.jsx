@@ -2,7 +2,7 @@ import plus from "@/assets/plus.svg";
 import document from "@/assets/document.svg";
 import { DataGrid } from "@material-ui/data-grid";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { API_PATH } from "@/constants";
 import { CONFIG } from "../../../constants";
 import { toast } from "react-toastify";
@@ -233,6 +233,15 @@ const ClientListPage = () => {
         toast.error("Bad request. Please try again");
       });
   };
+
+  useEffect(() => {
+    const getOrders = async () => {
+      const { data } = await axios.get(
+        API_PATH + "/main/orders?yesteday=today"
+      );
+    };
+    getOrders();
+  }, []);
 
   return (
     <>

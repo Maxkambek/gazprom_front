@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import plus from "@/assets/plus.svg";
 import close from "@/assets/close.svg";
 import axios from "axios";
 import { API_PATH, CONFIG } from "../../../constants";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 const AccountantToolsPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +13,8 @@ const AccountantToolsPage = () => {
   const [count, setCount] = useState("");
   const [come_time, setCome_time] = useState("");
   const [price, setPrice] = useState("");
+
+  const [products, setProducts] = useState([]);
 
   const productCreate = async (e) => {
     e.preventDefault();
@@ -42,10 +44,18 @@ const AccountantToolsPage = () => {
       });
   };
 
+  useEffect(() => {
+    const getProductList = async () => {
+      const { data } = await axios.get(API_PATH + "/main/product-list/");
+      setProducts(data);
+    };
+    getProductList();
+  }, []);
+
   return (
     <>
       <div className="AccountantToolsPage RightStyle">
-        <div className="btnWrap">
+        <div className="btnWrap mb-4">
           <h1>Список клиентов</h1>
           <button onClick={() => setIsOpen(true)} className="btn myBtn">
             <span>
@@ -54,6 +64,32 @@ const AccountantToolsPage = () => {
             Добавить запчасть
           </button>
         </div>
+
+        <table className="table TableStyle">
+          <thead>
+            <tr>
+              <td>№</td>
+              <td>Имя</td>
+              <td>Номер шифра</td>
+              <td>Количество</td>
+              <td>Время прибытия</td>
+              <td>Цена</td>
+            </tr>
+          </thead>
+          <tbody>
+            {products &&
+              products.map((item) => (
+                <tr key={item.id}>
+                  <th>{item.id}</th>
+                  <th>{item.name}</th>
+                  <th>{item.number_hash}</th>
+                  <th>{item.count}</th>
+                  <th>{item.come_time}</th>
+                  <th>{item.price}</th>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
 
       <div
@@ -108,7 +144,7 @@ const AccountantToolsPage = () => {
               value={come_time}
               onChange={(e) => setCome_time(e.target.value)}
               id="время прибытия"
-              type="datetime-local"
+              type="text"
               className="form-control"
             />
 

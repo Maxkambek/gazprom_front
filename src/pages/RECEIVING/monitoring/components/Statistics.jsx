@@ -1,14 +1,28 @@
+import axios from "axios";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useEffect, useState } from "react";
 import { Doughnut } from "react-chartjs-2";
+import { API_PATH } from "../../../../constants";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Statistics = () => {
+  const [statistics, setStatistic] = useState([]);
+
+  useEffect(() => {
+    const getStatistics = async () => {
+      const { data } = await axios.get(API_PATH + "/main/statictics/");
+      setStatistic(data);
+    };
+    getStatistics();
+  }, []);
+
   const data = {
     labels: [
       "Принимающий",
       "Специалист",
       "Бухгалтер",
+      "Оплата",
       "Pабота над счетчиком",
       "B стенд",
       "Документация",
@@ -16,14 +30,23 @@ const Statistics = () => {
     datasets: [
       {
         label: "Transaction",
-        data: [3, 6, 12, 8, 1, 15],
+        data: [
+          statistics.received,
+          statistics.specialist,
+          statistics.accountant,
+          statistics.payment,
+          statistics.test,
+          statistics.end,
+          statistics.docs,
+        ],
         backgroundColor: [
-          "#FF6E2E",
-          "#FFC772",
-          "#9461FF",
-          "#76CA66",
+          "#76ca66",
           "#3174BA",
+          "#FFC772",
+          "#FF6E2E",
           "#DA1E28",
+          "#CF54BC",
+          "#9461FF",
         ],
         borderColor: ["#fff"],
       },
@@ -72,47 +95,47 @@ const Statistics = () => {
               <div className="col-lg-5">
                 <div className="wrap">
                   <p>
-                    <span></span>Принимающий
+                    <span className="green"></span>Принимающий
                   </p>
-                  <h6>60</h6>
+                  <h6>{statistics.received}</h6>
                 </div>
                 <div className="wrap">
                   <p>
-                    <span></span>Специалист
+                    <span className="blue"></span>Специалист
                   </p>
-                  <h6>40</h6>
+                  <h6>{statistics.specialist}</h6>
                 </div>
                 <div className="wrap">
                   <p>
-                    <span></span>Бухгалтер
+                    <span className="orange"></span>Бухгалтер
                   </p>
-                  <h6>10</h6>
+                  <h6>{statistics.accountant}</h6>
                 </div>
                 <div className="wrap">
                   <p>
-                    <span></span>Оплата
+                    <span className="dark-orange"></span>Оплата
                   </p>
-                  <h6>200</h6>
+                  <h6>{statistics.payment}</h6>
                 </div>
               </div>
               <div className="col-lg-5 ms-auto">
                 <div className="wrap">
                   <p>
-                    <span></span>Принимающий
+                    <span className="pink"></span>B стенд
                   </p>
-                  <h6>25</h6>
+                  <h6>{statistics.test}</h6>
                 </div>
                 <div className="wrap">
                   <p>
-                    <span></span>Pабота над счетчиком
+                    <span className="red"></span>Pабота над счетчиком
                   </p>
-                  <h6>30</h6>
+                  <h6>{statistics.end}</h6>
                 </div>
                 <div className="wrap">
                   <p>
-                    <span></span>Документация
+                    <span className="dark-blue"></span>Документация
                   </p>
-                  <h6>200</h6>
+                  <h6>{statistics.docs}</h6>
                 </div>
               </div>
             </div>
