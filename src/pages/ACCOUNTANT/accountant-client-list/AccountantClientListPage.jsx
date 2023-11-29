@@ -1,17 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import close from "@/assets/close.svg";
+import axios from "axios";
+import { API_PATH } from "../../../constants";
+import { toast } from "react-toastify";
 
 const AccountantClientListPage = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [orders, setOrders] = useState([]);
+  const [order, setOrder] = useState();
+  const [btn, setBtn] = useState(1);
+
+  useEffect(() => {
+    axios(
+      API_PATH +
+        `/main/accountant${
+          btn === 1 ? "" : btn === 2 ? "?tady=1" : "?yesterday=28"
+        }`
+    ).then((res) => {
+      setOrders(res.data);
+    });
+  }, [btn]);
+
+  const sendAccountant = (item_id) => {
+    axios
+      .patch(API_PATH + `/main/accountant/${item_id}/`, {
+        ready_for_paid: true,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setIsOpen(false);
+        toast.success("Ma'lumotlar jo'natildi");
+      });
+  };
+
   return (
     <>
       <div className="AccountantClientListPage RightStyle">
         <h1>Список клиентов</h1>
 
         <div className="filterWrap FilterStyle">
-          <div className="filterBtn">Все</div>
-          <div className="filterBtn active">Сегодня</div>
-          <div className="filterBtn">Вчера</div>
+          {" "}
+          <div
+            onClick={() => setBtn(1)}
+            className={`filterBtn ${btn === 1 ? "active" : ""}`}
+          >
+            Все (20 000)
+          </div>
+          <div
+            onClick={() => setBtn(2)}
+            className={`filterBtn ${btn === 2 ? "active" : ""}`}
+          >
+            Сегодня (50)
+          </div>
+          <div
+            onClick={() => setBtn(3)}
+            className={`filterBtn ${btn === 3 ? "active" : ""}`}
+          >
+            Вчера (60)
+          </div>
         </div>
 
         <table className="table TableStyle">
@@ -27,33 +73,25 @@ const AccountantClientListPage = () => {
             </tr>
           </thead>
           <tbody>
-            <tr onClick={() => setIsOpen(true)} className="cursor">
-              <th>1</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th>№ 466863</th>
-              <th className="status status-blue">Специалист</th>
-            </tr>
-            <tr onClick={() => setIsOpen(true)} className="">
-              <th>2</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th>№ 466863</th>
-              <th className="status status-pink">в стенд</th>
-            </tr>
-            <tr onClick={() => setIsOpen(true)} className="">
-              <th>3</th>
-              <th>Янги хайот тумани 329-мактаб</th>
-              <th>01.11.2023 16:56</th>
-              <th>Ultramag G-100 № 01912</th>
-              <th>№ 466863</th>
-              <th>№ 466863</th>
-              <th className="status status-yellow">Бухгалтер</th>
-            </tr>
+            {orders &&
+              orders.map((item) => (
+                <>
+                  <tr
+                    onClick={() => {
+                      setIsOpen(true), setOrder(item);
+                    }}
+                    className="cursor"
+                  >
+                    <th>{item.id}</th>
+                    <th>{item.name_org}</th>
+                    <th>{item.created_at}</th>
+                    <th>{item.meter_brand}</th>
+                    <th>{item.serial_number}</th>
+                    <th>№ {item.temp_sensor}</th>
+                    <th className="status status-blue">{item.status}</th>
+                  </tr>
+                </>
+              ))}
           </tbody>
         </table>
       </div>
@@ -64,7 +102,7 @@ const AccountantClientListPage = () => {
         <div className="cards">
           <div className="cardsTop">
             <div className="d-flex align-items-center justify-content-between">
-              <h1>Янги хайот тумани 329-мактаб </h1>
+              <h1>{order?.name_org} </h1>
               <div onClick={() => setIsOpen(false)} className="closeImg cursor">
                 <img src={close} alt="" />
               </div>
@@ -73,11 +111,11 @@ const AccountantClientListPage = () => {
               <div className="d-flex align-items-center">
                 <div className="wrap me-5">
                   <h2>Зав.№ сч</h2>
-                  <h3>№ 466863</h3>
+                  <h3>№ {order?.serial_number}</h3>
                 </div>
                 <div className="wrap">
                   <h2>Зав.№ сч</h2>
-                  <h3>№ 466863</h3>
+                  <h3>№ {order?.temp_sensor}</h3>
                 </div>
               </div>
             </div>
@@ -97,17 +135,25 @@ const AccountantClientListPage = () => {
                   <td>Общая сумма с учетом НДС, сум</td>
                 </tr>
               </thead>
+
               <tbody>
-                <tr>
-                  <th>Сервисное обслуживание и предповерочные работы</th>
-                  <th>1</th>
-                  <th>шт</th>
-                  <th>548 065,00</th>
-                  <th>548 065,00</th>
-                  <th>12</th>
-                  <th>65 767,80</th>
-                  <th>613 832,80</th>
-                </tr>
+                {order?.order_products &&
+                  order.order_products.map((item) => (
+                    <>
+                      <tr>
+                        <th>{item.product.name}</th>
+                        <th>{item.count}</th>
+                        <th>{item.count} шт</th>
+                        <th>{item.product.price}</th>
+                        <th>{item.product.price * item.count}</th>
+                        <th>12%</th>
+                        <th>
+                          {item.product.price * 1.12 - item.product.price}
+                        </th>
+                        <th>{item.product.price * 1.12 * item.count}</th>
+                      </tr>
+                    </>
+                  ))}
               </tbody>
 
               <tfoot>
@@ -117,7 +163,7 @@ const AccountantClientListPage = () => {
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td>3 019 625,00</td>
+                  <td></td>
                   <td>455 955,00</td>
                   <td>3 475 580,00</td>
                 </tr>
@@ -127,7 +173,10 @@ const AccountantClientListPage = () => {
 
           <div className="btnWrap">
             <button className="btn cardsBtn silver">Скачать PDF</button>
-            <button onClick={() => setIsOpen(false)} className="btn cardsBtn">
+            <button
+              onClick={() => sendAccountant(order.id)}
+              className="btn cardsBtn"
+            >
               Отправить
             </button>
           </div>

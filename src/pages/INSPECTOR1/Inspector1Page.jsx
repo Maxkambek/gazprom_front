@@ -1,71 +1,44 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { API_PATH } from "../../../constants";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { API_PATH } from "../../constants";
 import { toast } from "react-toastify";
 
-const SpecialistCliestListPage = () => {
+const Inspector1Page = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [btn, setBtn] = useState(1);
   const [orders, setOrders] = useState([]);
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [order, setOrder] = useState({});
-  const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     const getOrders = async () => {
       const { data } = await axios(
         API_PATH +
-          `/main/orders-specialist${
-            btn === 1
-              ? ""
-              : btn === 2
-              ? "?today=2"
-              : btn === 3
-              ? "?yesterday=3"
-              : btn === 4
-              ? "?week=4"
-              : btn === 5
-              ? "?month=6"
-              : "?year=6"
+          `/main/inspector-order-list${
+            btn === 1 ? "" : btn === 2 ? "?tady=1" : "?yesterday=28"
           }`
       );
       setOrders(data);
     };
-
-    const getProducts = async () => {
-      const { data } = await axios(API_PATH + "/main/product-list/");
-      setProducts(data);
-    };
+    // const getProducts = async () => {
+    //   const { data } = await axios(API_PATH + "/main/product-list/");
+    //   setProducts(data);
+    // };
     getOrders();
-    getProducts();
+    // getProducts();
   }, [btn]);
 
   const getOrder = (item) => {
     setOrder(item);
   };
 
-  const handleOnSelect = (item) => {
-    const data = [...selectedProducts];
-    data.push({
-      item: item,
-      count: 1,
+  const sendInspcetor = (item_id, status) => {
+    const { data } = axios.patch(API_PATH + `/main/inspector-1/${item_id}/`, {
+      is_checked: status,
     });
-    setSelectedProducts(data);
-  };
-
-  const sendProducts = (item_id) => {
-    selectedProducts.map((item) =>
-      axios.post(API_PATH + "/main/specialist-create/", {
-        order: item_id,
-        product: item.item.id,
-        count: item.count,
-      })
-    );
-    console.log("Senddddddddddddddddddd");
     setIsOpen(false);
     toast.success("Ma'lumotlar jo'natildi");
-    setSelectedProducts("");
+    console.log(data);
   };
 
   return (
@@ -91,24 +64,6 @@ const SpecialistCliestListPage = () => {
           >
             Вчера (60)
           </div>
-          <div
-            onClick={() => setBtn(4)}
-            className={`filterBtn ${btn === 4 ? "active" : ""}`}
-          >
-            Неделя (300)
-          </div>
-          <div
-            onClick={() => setBtn(5)}
-            className={`filterBtn ${btn === 5 ? "active" : ""}`}
-          >
-            Месяц (1 000)
-          </div>
-          <div
-            onClick={() => setBtn(6)}
-            className={`filterBtn ${btn === 6 ? "active" : ""}`}
-          >
-            Год (12 000){" "}
-          </div>
         </div>
 
         <table className="table TableStyle">
@@ -123,6 +78,7 @@ const SpecialistCliestListPage = () => {
             </tr>
           </thead>
           <tbody>
+            
             {orders &&
               orders.map((item) => (
                 <tr
@@ -151,7 +107,7 @@ const SpecialistCliestListPage = () => {
       </div>
 
       <div className={`ModalStyle ${isOpen && "active"}`}>
-        <div key={order.id} className="ClientModal zed">
+        <div className="ClientModal zed">
           <div className="modalTop">
             <h1>Данные клиента</h1>
           </div>
@@ -408,7 +364,34 @@ const SpecialistCliestListPage = () => {
               />
             </div>
 
-            {/* <div className="formWrap">
+            {/* <Autocomplete
+              multiple
+              id="checkboxes-tags-demo"
+              options={products}
+              disableCloseOnSelect
+              getOptionLabel={(option) => option.name}
+              renderOption={(props, option, { selected }) => (
+                <li {...props}>
+                  <Checkbox
+                    // icon={icon}
+                    // checkedIcon={checkedIcon}
+                    style={{ marginRight: 8 }}
+                    checked={selected}
+                  />
+                  {option.name}
+                </li>
+              )}
+              style={{ width: 500 }}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  label="Checkboxes"
+                  placeholder="Favorites"
+                />
+              )}
+            /> */}
+
+            <div className="formWrap">
               <label htmlFor="Замена комплектующих:">
                 Замена комплектующих:
               </label>
@@ -417,45 +400,21 @@ const SpecialistCliestListPage = () => {
                 id="Замена комплектующих:"
                 className="form-control"
               />
-            </div> */}
-            {selectedProducts ? (
-              <>
-                {selectedProducts?.map((item, index) => (
-                  <>
-                    <div key={index} className="formWrap">
-                      <label htmlFor={item.item.name}>{item.item.name}</label>
-                      <label htmlFor={`${item.count} sht`}>
-                        {item.count} sht
-                      </label>
-                    </div>
-                  </>
-                ))}
-              </>
-            ) : (
-              <></>
-            )}
-
-            <div className="formWrap">
-              <label htmlFor="Замена комплектующих:">
-                Замена комплектующих:
-              </label>
-              <ReactSearchAutocomplete
-                items={products}
-                onSelect={handleOnSelect}
-                autoFocus
-                className="w-100"
-                onClick={handleOnSelect}
-                onClear={true}
-              />
             </div>
           </div>
 
-          <div className="modalFooter">
+          <div className="modalFooter d-flex justify-content-between">
             <button
-              onClick={() => sendProducts(order.id)}
-              className="btn myBtn d-block w-100"
+              onClick={() => sendInspcetor(order.id, false)}
+              className="btn myBtn2 d-block w-50"
             >
-              Отправить
+              Негоден
+            </button>
+            <button
+              onClick={() => sendInspcetor(order.id, true)}
+              className="btn myBtn d-block w-50"
+            >
+              Годен
             </button>
           </div>
         </div>
@@ -465,4 +424,4 @@ const SpecialistCliestListPage = () => {
   );
 };
 
-export default SpecialistCliestListPage;
+export default Inspector1Page;
