@@ -286,6 +286,24 @@ body {
       overflow: hidden;
       overflow-y: auto;
       user-select: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .btn {
+        width: 100%;
+        border-radius: 12px;
+        background: #EBEBEB;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span {
+          display: flex;
+          margin-right: 8px;
+        }
+      }
 
       .wrap {
         h3 {
@@ -844,6 +862,34 @@ body {
 
   .AddClientModal {
     background: #fff;
+  }
+
+  .StandardClientListPage {
+
+    .filterWrap {
+      width: 220px;
+    }
+
+    .table {
+      th {
+        vertical-align: middle;
+      }
+
+      .file {
+        font-weight: 600;
+      }
+
+      .btn {
+        padding: 5px 16px;
+        border-radius: 6px !important;
+        background: #ECECEC;
+        box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.02);
+
+        span {
+          margin-right: 8px;
+        }
+      }
+    }
   }
 
   .CardStyle {

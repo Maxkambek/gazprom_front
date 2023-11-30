@@ -1,10 +1,10 @@
 import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
 import logo from "@/assets/logo.svg";
-import MonitoringNavbar from "../pages/RECEIVING/monitoring/components/MonitoringNavbar";
+import MonitoringNavbar from "@/pages/RECEIVING/monitoring/components/MonitoringNavbar";
 import {TOKEN, USER_ROLE} from "@/constants/index.js";
 import logout from "@/assets/logout.svg";
 
-const SpecialistLayout = () => {
+const UzStandardLayout = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const logOut = () => {
@@ -13,7 +13,7 @@ const SpecialistLayout = () => {
         navigate("/", {replace: true});
     }
     return (
-        <div className="ReceivingLayout LayoutStyle">
+        <div className="UzStandardLayout LayoutStyle">
             <div className="row">
                 <div className="col-lg-2 left">
                     <div className="linkWrapper">
@@ -22,19 +22,11 @@ const SpecialistLayout = () => {
                         </Link>
                         <Link
                             className={`link ${
-                                location.pathname === "/specialist-client-list" && "active"
+                                location.pathname === "/standard-client-list" && "active"
                             }`}
-                            to="/specialist-client-list"
+                            to="/standard-client-list"
                         >
                             <span className="icon icon-list"></span>Список клиентов
-                        </Link>
-                        <Link
-                            className={`link ${
-                                location.pathname === "/specialist-client-history" && "active"
-                            }`}
-                            to="/specialist-client-history"
-                        >
-                            <span className="icon icon-history"></span>История клиентов
                         </Link>
                     </div>
                     <button onClick={logOut} className="btn"><span><img src={logout} alt=""/></span>Выход</button>
@@ -48,4 +40,4 @@ const SpecialistLayout = () => {
     );
 };
 
-export default SpecialistLayout;
+export default UzStandardLayout;

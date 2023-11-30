@@ -1,9 +1,9 @@
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 import logo from "@/assets/logo.svg";
 import MonitoringNavbar from "@/pages/RECEIVING/monitoring/components/MonitoringNavbar.jsx";
+import {TOKEN, USER_ROLE} from "@/constants/index.js";
 
 const ClientLayout = () => {
-    const status = "payment";
     return (
         <div className="ClientLayout LayoutStyle">
             <div className="row">
@@ -23,7 +23,7 @@ const ClientLayout = () => {
                         </div>
                     </div>
 
-                    <div className={`wrap ${status === "specialist" && "active"}`}>
+                    <div className={`wrap `}>
                         <div className="iconWrap">
                             <span className="icon icon-dot"></span>
                         </div>

@@ -53,7 +53,7 @@ const Main = () => {
           window.location.reload();
         }
         if (res.data.role === "uz_standard") {
-          navigate("/uz_standard", { replace: true });
+          navigate("/standard-client-list", { replace: true });
           window.location.reload();
         }
         if (res.data.role === "inspector_1") {

@@ -2,31 +2,33 @@ import {HashRouter, Routes, Route} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import {useSelector} from "react-redux";
 import {
-    AccountantLayout, ClientLayout, IncpectorsLayout,
-    ReceivingLayout,
-    SpecialistLayout,
+    AccountantLayout, ClientLayout, IncpectorsLayout, ReceivingLayout, SpecialistLayout, UzStandardLayout,
 } from "./components";
 import {
     AccountantClientListPage,
-    AccountantToolsPage, ClientAccountantPage,
+    AccountantToolsPage,
+    ClientAccountantPage,
     ClientHistoryPage,
-    ClientListPage, ClientPaymentPage, ClientReceiverPage, ClientSpecialistPage, Inspector1Page, Inspector2Page,
+    ClientListPage,
+    ClientPaymentPage,
+    ClientReceiverPage,
+    ClientSpecialistPage,
+    Inspector1Page,
+    Inspector2Page,
     Main,
     MonitoringPage,
     SpecialistClientHistory,
-    SpecialistCliestListPage,
+    SpecialistCliestListPage, StandartClientListPage,
 } from "./pages";
 
 const App = () => {
     const {userRole} = useSelector((state) => state.auth);
-    return (
-        <>
+    return (<>
             <HashRouter>
                 <Routes>
                     <Route path="/" element={<Main/>}/>
 
-                    {userRole === "CLIENT" && (
-                        <>
+                    {userRole === "CLIENT" && (<>
                             {/* RECEIVING */}
                             <Route element={<ClientLayout/>}>
                                 <Route path="/client-receiver" element={<ClientReceiverPage/>}/>
@@ -35,11 +37,9 @@ const App = () => {
                                 <Route path="/client-payment" element={<ClientPaymentPage/>}/>
                             </Route>
                             {/* RECEIVING */}
-                        </>
-                    )}
+                        </>)}
 
-                    {userRole === "RECEIVER" && (
-                        <>
+                    {userRole === "RECEIVER" && (<>
                             {/* RECEIVING */}
                             <Route element={<ReceivingLayout/>}>
                                 <Route path="/monitoring" element={<MonitoringPage/>}/>
@@ -47,11 +47,9 @@ const App = () => {
                                 <Route path="/client-history" element={<ClientHistoryPage/>}/>
                             </Route>
                             {/* RECEIVING */}
-                        </>
-                    )}
+                        </>)}
 
-                    {userRole === "SPECIALIST" && (
-                        <>
+                    {userRole === "SPECIALIST" && (<>
                             {/* SPECIALIST */}
                             <Route element={<SpecialistLayout/>}>
                                 <Route
@@ -64,11 +62,9 @@ const App = () => {
                                 />
                             </Route>
                             {/* SPECIALIST */}
-                        </>
-                    )}
+                        </>)}
 
-                    {userRole === "ACCOUNTANT" && (
-                        <>
+                    {userRole === "ACCOUNTANT" && (<>
                             {/* ACCOUNTANT */}
                             <Route element={<AccountantLayout/>}>
                                 <Route
@@ -81,35 +77,37 @@ const App = () => {
                                 />
                             </Route>
                             {/* ACCOUNTANT */}
-                        </>
-                    )}
+                        </>)}
 
-                    {userRole === "INSPECTOR_1" && (
-                        <>
+                    {userRole === "INSPECTOR_1" && (<>
                             {/* INSPECTOR_1 */}
                             <Route element={<IncpectorsLayout/>}>
                                 <Route path="/inspector_1" element={<Inspector1Page/>}/>
                             </Route>
                             {/* INSPECTOR_1 */}
-                        </>
-                    )}
+                        </>)}
 
-                    {userRole === "INSPECTOR_2" && (
-                        <>
+                    {userRole === "INSPECTOR_2" && (<>
                             {/* INSPECTOR_2 */}
                             <Route element={<IncpectorsLayout/>}>
                                 <Route path="/inspector_2" element={<Inspector2Page/>}/>
                             </Route>
                             {/* INSPECTOR_2 */}
-                        </>
-                    )}
+                        </>)}
+
+                    {userRole === "UZ_STANDARD" && (<>
+                            {/* UZ_STANDARD */}
+                            <Route element={<UzStandardLayout/>}>
+                                <Route path="/standard-client-list" element={<StandartClientListPage/>}/>
+                            </Route>
+                            {/* UZ_STANDARD */}
+                        </>)}
 
                     <Route path="*" element={<Main/>}/>
                 </Routes>
                 <ToastContainer/>
             </HashRouter>
-        </>
-    );
+        </>);
 };
 
 export default App;

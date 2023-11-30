@@ -62,10 +62,9 @@ const SpecialistCliestListPage = () => {
         count: item.count,
       })
     );
-    console.log("Senddddddddddddddddddd");
     setIsOpen(false);
     toast.success("Ma'lumotlar jo'natildi");
-    setSelectedProducts("");
+    setSelectedProducts([]);
   };
 
   return (
