@@ -15,3 +15,6 @@ export { default as Inspector1Page } from "./INSPECTOR1/Inspector1Page";
 export { default as Inspector2Page } from "./INSPECTOR2/Inspector2Page";
 
 export { default as ClientReceiverPage } from "./CLIENT/client-receiver/ClientReceiverPage.jsx";
+export { default as ClientSpecialistPage } from "./CLIENT/client-specialist/ClientSpecialistPage.jsx";
+export { default as ClientAccountantPage } from "./CLIENT/client-accountant/ClientAccountantPage.jsx";
+export { default as ClientPaymentPage } from "./CLIENT/client-payment/ClientPaymentPage.jsx";

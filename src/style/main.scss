@@ -304,6 +304,10 @@ body {
           line-height: 18px; /* 150% */
         }
       }
+
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
     }
 
     .logo {
@@ -457,6 +461,45 @@ body {
           font-weight: 400;
           line-height: 24px; /* 150% */
         }
+      }
+    }
+  }
+
+  .ClientAccountantPage {
+
+    .middleModal {
+      opacity: 1;
+      visibility: visible;
+      position: initial;
+      background: transparent;
+      width: 100%;
+      padding: 30px 30px 30px 0;
+
+      .cards {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .ClientPaymentPage {
+    .paymentCard {
+      border-radius: 10px;
+      background: #FFF;
+      box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.10);
+      padding: 12px;
+      margin-bottom: 30px;
+
+      .img {
+        border-radius: var(--8, 8px);
+        background: #ECECEC;
+        text-align: center;
+        padding: 12px;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        width: 100%;
       }
     }
   }

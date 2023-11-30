@@ -8,9 +8,9 @@ import {
 } from "./components";
 import {
     AccountantClientListPage,
-    AccountantToolsPage,
+    AccountantToolsPage, ClientAccountantPage,
     ClientHistoryPage,
-    ClientListPage, ClientReceiverPage, Inspector1Page, Inspector2Page,
+    ClientListPage, ClientPaymentPage, ClientReceiverPage, ClientSpecialistPage, Inspector1Page, Inspector2Page,
     Main,
     MonitoringPage,
     SpecialistClientHistory,
@@ -30,6 +30,9 @@ const App = () => {
                             {/* RECEIVING */}
                             <Route element={<ClientLayout/>}>
                                 <Route path="/client-receiver" element={<ClientReceiverPage/>}/>
+                                <Route path="/client-spesialist" element={<ClientSpecialistPage/>}/>
+                                <Route path="/client-accountant" element={<ClientAccountantPage/>}/>
+                                <Route path="/client-payment" element={<ClientPaymentPage/>}/>
                             </Route>
                             {/* RECEIVING */}
                         </>
