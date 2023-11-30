@@ -9,11 +9,24 @@ const StandardClientListPage = () => {
     const [btn, setBtn] = useState(1);
     const [orders, setOrders] = useState([]);
 
+    const formatDate = (dateTimeString) => {
+        const date = new Date(dateTimeString);
+        const formattedDate = date.toLocaleString('en-GB', {
+            hour: 'numeric',
+            minute: 'numeric',
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        });
+
+        return formattedDate;
+    };
+
     useEffect(() => {
         const getOrders = async () => {
             const {data} = await axios(
                 API_PATH +
-                `/main/orders-specialist${
+                `/main/list-for-uzstandard/${
                     btn === 1
                         ? ""
                         : btn === 2
@@ -64,21 +77,24 @@ const StandardClientListPage = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <th>1</th>
-                        <th>Янги хайот тумани 329-мактаб</th>
-                        <th>01.11.2023 16:56</th>
-                        <th>Ultramag G-100 № 01912</th>
-                        <th className='file'><p className={'mb-2'}><span className={'me-2'}><img src={pdf}
-                                                                                                 alt=""/></span>UzAvto
-                            Number.pdf</p>
-                            <button className="btn"><span><img src={download} alt=""/></span>Скачать</button>
-                        </th>
-                        <th>
-                            <button className="btn"><span><img src={upload} alt=""/></span>Загрузить</button>
+                    {orders && orders.map((item) => (
+                        <tr key={item.id}>
+                            <th key={item.id}>{item.id}</th>
+                            <th>{item.name_org}</th>
+                            <th>{formatDate(item.created_time)}</th>
+                            <th>{item.meter_brand}</th>
+                            <th className='file'>
+                                <p className={'mb-2'}><span className={'me-2'}>
+                                    <img src={pdf} alt=""/></span>
+                                    UzAvto Number.pdf</p>
+                                <button className="btn"><span><img src={download} alt=""/></span>Скачать</button>
+                            </th>
+                            <th>
+                                <button className="btn"><span><img src={upload} alt=""/></span>Загрузить</button>
 
-                        </th>
-                    </tr>
+                            </th>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>

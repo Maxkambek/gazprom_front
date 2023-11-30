@@ -75,8 +75,8 @@ const AccountantClientListPage = () => {
           <tbody>
             {orders &&
               orders.map((item) => (
-                <>
                   <tr
+                      key={item.id}
                     onClick={() => {
                       setIsOpen(true), setOrder(item);
                     }}
@@ -90,7 +90,6 @@ const AccountantClientListPage = () => {
                     <th>№ {item.temp_sensor}</th>
                     <th className="status status-blue">{item.status}</th>
                   </tr>
-                </>
               ))}
           </tbody>
         </table>

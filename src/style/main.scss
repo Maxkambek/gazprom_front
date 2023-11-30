@@ -1,9 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 
-#root {
-  overflow-x: hidden;
-}
 
 html {
   ::-webkit-scrollbar {
@@ -85,6 +82,7 @@ html {
 
 body {
   font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
 
   h1,
   h2,
@@ -289,6 +287,8 @@ body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: sticky;
+      top: 0;
 
       .btn {
         width: 100%;
