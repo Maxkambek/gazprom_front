@@ -1,110 +1,97 @@
-import { Link, Outlet } from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import logo from "@/assets/logo.svg";
+import MonitoringNavbar from "@/pages/RECEIVING/monitoring/components/MonitoringNavbar.jsx";
 
 const ClientLayout = () => {
-  return (
-    <div className="ClientLayout">
-      <div className="row">
-        <div className="col-lg-2 left">
-          <Link to="/" className="logo">
-            <img src={logo} alt="" />
-          </Link>
-          <div className="for_margin"></div>
-          <div className="client_nav_box">
-            <div className="nav_box_line">
-              <div className="nav_box_img_1 active"></div>
-              <div className="nav_box_img_2 active"></div>
-            </div>
-            <div className="nav_box_text">
-              <div className="nav_text_h active">Принимающий</div>
-              <div className="nav_text_p active">
-                Происходит внешний осмотр счетчика и отправляется к специалисту
-              </div>
-            </div>
-          </div>
-          <div className="client_nav_box">
-            <div className="nav_box_line">
-              <div className="nav_box_img_1 active"></div>
-              <div className="nav_box_img_2 active"></div>
-            </div>
-            <div className="nav_box_text">
-              <div className="nav_text_h active">Специалист</div>
-              <div className="nav_text_p active">
-                Специалист производит внутренний осмотр счётчик и заполняет
-                нужные данные (нужные запчасти и другие данные) по форме.
-              </div>
-            </div>
-          </div>
-          <div className="client_nav_box">
-            <div className="nav_box_line">
-              <div className="nav_box_img_1 "></div>
-              <div className="nav_box_img_2 "></div>
-            </div>
-            <div className="nav_box_text">
-              <div className="nav_text_h ">Бухгалтер</div>
-              <div className="nav_text_p ">
-                Бухгалтер заполняет ценами запчастей и других услуг
-              </div>
-            </div>
-          </div>
-          <div className="client_nav_box">
-            <div className="nav_box_line">
-              <div className="nav_box_img_1 "></div>
-              <div className="nav_box_img_2 "></div>
-            </div>
-            <div className="nav_box_text">
-              <div className="nav_text_h ">Оплата</div>
-              <div className="nav_text_p ">
-                Oплачитите за услуги в виде онлайн оплаты (Click , Payme) или в
-                виде наличные.
-              </div>
-            </div>
-          </div>
-          <div className="client_nav_box">
-            <div className="nav_box_line">
-              <div className="nav_box_img_1 "></div>
-              <div className="nav_box_img_2 "></div>
-            </div>
-            <div className="nav_box_text">
-              <div className="nav_text_h ">Pабота над счетчиком</div>
-              <div className="nav_text_p ">
-                Oплачитите за услуги в виде онлайн оплаты (Click , Payme) или в
-                виде наличные.
-              </div>
-            </div>
-          </div>
-          <div className="client_nav_box">
-            <div className="nav_box_line">
-              <div className="nav_box_img_1 "></div>
-              <div className="nav_box_img_2 "></div>
-            </div>
-            <div className="nav_box_text">
-              <div className="nav_text_h ">B стенд</div>
-              <div className="nav_text_p ">
-                Hачинается внутренний осмотр и работа над счетчиком
-              </div>
-            </div>
-          </div>
-          <div className="client_nav_box">
-            <div className="nav_box_line">
-              <div className="nav_box_img_1 "></div>
-              <div className="nav_box_img_2 "></div>
-            </div>
-            <div className="nav_box_text">
-              <div className="nav_text_h ">Документация</div>
-              <div className="nav_text_p ">
-                Hачинается внутренний осмотр и работа над счетчиком
-              </div>
-            </div>
-          </div>
-        </div>
+    const status = "payment";
+    return (
+        <div className="ClientLayout LayoutStyle">
+            <div className="row">
 
-        <div className="col-lg-10 right">
-          <Outlet />
+                <div className="col-lg-2 left">
+                    <Link to="/" className="logo">
+                        <img src={logo} alt=""/>
+                    </Link>
+
+                    <div className={`wrap`}>
+                        <div className="iconWrap">
+                            <span className="icon icon-dot"></span>
+                        </div>
+                        <div className="line"></div>
+                        <div><h3>Принимающий</h3>
+                            <h4>Происходит внешний осмотр счетчика и отправляется к специалисту</h4>
+                        </div>
+                    </div>
+
+                    <div className={`wrap ${status === "specialist" && "active"}`}>
+                        <div className="iconWrap">
+                            <span className="icon icon-dot"></span>
+                        </div>
+                        <div className="line h-105"></div>
+                        <div><h3>Специалист</h3>
+                            <h4>Специалист производит внутренний осмотр счётчик и заполняет нужные данные (нужные
+                                запчасти и другие данные) по форме.</h4>
+                        </div>
+                    </div>
+
+                    <div className="wrap">
+                        <div className="iconWrap">
+                            <span className="icon icon-dot"></span>
+                        </div>
+                        <div className="line"></div>
+                        <div><h3>Бухгалтер</h3>
+                            <h4>Бухгалтер заполняет ценами запчастей и других услуг</h4>
+                        </div>
+                    </div>
+
+                    <div className="wrap">
+                        <div className="iconWrap">
+                            <span className="icon icon-dot"></span>
+                        </div>
+                        <div className="line"></div>
+                        <div><h3>Оплата</h3>
+                            <h4>Оплачитите за услуги в виде онлайн оплаты (Click , Payme) или в виде наличные.</h4>
+                        </div>
+                    </div>
+
+                    <div className="wrap">
+                        <div className="iconWrap">
+                            <span className="icon icon-dot"></span>
+                        </div>
+                        <div className="line"></div>
+                        <div><h3>Pабота над счетчиком</h3>
+                            <h4>Pачинается внутренний осмотр и работа над счетчиком</h4>
+                        </div>
+                    </div>
+
+                    <div className="wrap">
+                        <div className="iconWrap">
+                            <span className="icon icon-dot"></span>
+                        </div>
+                        <div className="line"></div>
+                        <div><h3>B стенд</h3>
+                            <h4>Начинается внутренний осмотр и работа над счетчиком</h4>
+                        </div>
+                    </div>
+
+                    <div className="wrap">
+                        <div className="iconWrap">
+                            <span className="icon icon-dot"></span>
+                        </div>
+                        <div><h3>Документация</h3>
+                            <h4>Начинается внутренний осмотр и работа над счетчиком</h4>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div className="col-lg-10 right">
+                    <MonitoringNavbar/>
+                    <Outlet/>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default ClientLayout;

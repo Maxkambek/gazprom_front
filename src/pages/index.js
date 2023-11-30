@@ -10,3 +10,8 @@ export { default as SpecialistClientHistory } from "./SPECIALIST/specialist-clie
 
 export { default as AccountantClientListPage } from "./ACCOUNTANT/accountant-client-list/AccountantClientListPage";
 export { default as AccountantToolsPage } from "./ACCOUNTANT/accountant-tools/AccountantToolsPage";
+
+export { default as Inspector1Page } from "./INSPECTOR1/Inspector1Page";
+export { default as Inspector2Page } from "./INSPECTOR2/Inspector2Page";
+
+export { default as ClientReceiverPage } from "./CLIENT/client-receiver/ClientReceiverPage.jsx";

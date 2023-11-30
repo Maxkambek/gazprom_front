@@ -49,7 +49,7 @@ const Main = () => {
           window.location.reload();
         }
         if (res.data.role === "client") {
-          navigate("/client", { replace: true });
+          navigate("/client-receiver", { replace: true });
           window.location.reload();
         }
         if (res.data.role === "uz_standard") {
