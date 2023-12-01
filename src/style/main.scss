@@ -583,6 +583,33 @@ body {
     }
   }
 
+  .EmployeesTable {
+
+    tr {
+      position: relative;
+    }
+
+    .Loader {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 20px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 1px;
+      height: 1px;
+    }
+
+    .cards {
+
+      &::-webkit-scrollbar {
+        width: 1px;
+        height: 1px;
+      }
+    }
+  }
+
   .RightStyle {
     padding: 28px 24px;
     background-color: #f2f2f2;
