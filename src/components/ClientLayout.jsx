@@ -1,9 +1,26 @@
 import {Link, Outlet, useNavigate} from "react-router-dom";
 import logo from "@/assets/logo.svg";
 import MonitoringNavbar from "@/pages/RECEIVING/monitoring/components/MonitoringNavbar.jsx";
-import {TOKEN, USER_ROLE} from "@/constants/index.js";
+import {API_PATH, CONFIG, TOKEN, USER_ROLE} from "@/constants/index.js";
+import {useCallback, useEffect, useState} from "react";
+import axios from "axios";
+import {toast} from "react-toastify";
 
 const ClientLayout = () => {
+    const [client, setClient] = useState([])
+
+    const getClient = useCallback(async () => {
+        try {
+            const {data} = await axios.get(API_PATH + "/main/client/", CONFIG);
+            setClient(data);
+        } catch (error) {
+            toast().error("Error getting client:", error);
+        }
+    }, []);
+
+    useEffect(() => {
+        getClient();
+    }, [getClient]);
     return (
         <div className="ClientLayout LayoutStyle">
             <div className="row">

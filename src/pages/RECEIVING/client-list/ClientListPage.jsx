@@ -1,83 +1,84 @@
 import plus from "@/assets/plus.svg";
 import document from "@/assets/document.svg";
-import {DataGrid} from "@material-ui/data-grid";
+// import {DataGrid} from "@material-ui/data-grid";
 import axios from "axios";
 import {useEffect, useState} from "react";
 import {API_PATH} from "@/constants";
 import {CONFIG} from "../../../constants";
 import {toast} from "react-toastify";
+import {Loader} from "@/components/Loader.jsx";
 
 const ClientListPage = () => {
-    const columns = [
-        {field: "id", headerName: "№", width: 50},
-        {
-            field: "organization",
-            headerName: "Наименование организации",
-            width: 400,
-        },
-        {
-            field: "data",
-            headerName: "Дата",
-            width: 150,
-        },
-        {
-            field: "mark",
-            headerName: "Марка счетчика газа",
-            width: 200,
-        },
-        {
-            field: "number",
-            headerName: "Заводские номера",
-            width: 200,
-        },
-        {
-            field: "status",
-            headerName: "Статус",
-            width: 200,
-        },
-    ];
-    const rows = [
-        {
-            id: "1",
-            organization: "Янги хайот тумани 329-мактаб",
-            data: "01.11.2023 16:56",
-            mark: "Ultramag G-100 № 01912",
-            number: "№ 466863",
-            status: "Специалист",
-        },
-        {
-            id: "2",
-            organization: "Янги хайот тумани 329-мактаб",
-            data: "01.11.2023 16:56",
-            mark: "Ultramag G-100 № 01912",
-            number: "№ 466863",
-            status: "Специалист",
-        },
-        {
-            id: "3",
-            organization: "Янги хайот тумани 329-мактаб",
-            data: "01.11.2023 16:56",
-            mark: "Ultramag G-100 № 01912",
-            number: "№ 466863",
-            status: "Специалист",
-        },
-        {
-            id: "4",
-            organization: "Янги хайот тумани 329-мактаб",
-            data: "01.11.2023 16:56",
-            mark: "Ultramag G-100 № 01912",
-            number: "№ 466863",
-            status: "Специалист",
-        },
-        {
-            id: "5",
-            organization: "Янги хайот тумани 329-мактаб",
-            data: "01.11.2023 16:56",
-            mark: "Ultramag G-100 № 01912",
-            number: "№ 466863",
-            status: "Специалист",
-        },
-    ];
+    // const columns = [
+    //     {field: "id", headerName: "№", width: 50},
+    //     {
+    //         field: "organization",
+    //         headerName: "Наименование организации",
+    //         width: 400,
+    //     },
+    //     {
+    //         field: "data",
+    //         headerName: "Дата",
+    //         width: 150,
+    //     },
+    //     {
+    //         field: "mark",
+    //         headerName: "Марка счетчика газа",
+    //         width: 200,
+    //     },
+    //     {
+    //         field: "number",
+    //         headerName: "Заводские номера",
+    //         width: 200,
+    //     },
+    //     {
+    //         field: "status",
+    //         headerName: "Статус",
+    //         width: 200,
+    //     },
+    // ];
+    // const rows = [
+    //     {
+    //         id: "1",
+    //         organization: "Янги хайот тумани 329-мактаб",
+    //         data: "01.11.2023 16:56",
+    //         mark: "Ultramag G-100 № 01912",
+    //         number: "№ 466863",
+    //         status: "Специалист",
+    //     },
+    //     {
+    //         id: "2",
+    //         organization: "Янги хайот тумани 329-мактаб",
+    //         data: "01.11.2023 16:56",
+    //         mark: "Ultramag G-100 № 01912",
+    //         number: "№ 466863",
+    //         status: "Специалист",
+    //     },
+    //     {
+    //         id: "3",
+    //         organization: "Янги хайот тумани 329-мактаб",
+    //         data: "01.11.2023 16:56",
+    //         mark: "Ultramag G-100 № 01912",
+    //         number: "№ 466863",
+    //         status: "Специалист",
+    //     },
+    //     {
+    //         id: "4",
+    //         organization: "Янги хайот тумани 329-мактаб",
+    //         data: "01.11.2023 16:56",
+    //         mark: "Ultramag G-100 № 01912",
+    //         number: "№ 466863",
+    //         status: "Специалист",
+    //     },
+    //     {
+    //         id: "5",
+    //         organization: "Янги хайот тумани 329-мактаб",
+    //         data: "01.11.2023 16:56",
+    //         mark: "Ultramag G-100 № 01912",
+    //         number: "№ 466863",
+    //         status: "Специалист",
+    //     },
+    // ];
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -111,8 +112,12 @@ const ClientListPage = () => {
     const [image2, setImage2] = useState("");
     const [image3, setImage3] = useState("");
 
+    const [isLoading, setIsLoading] = useState(false)
+    const [isOrder, setIsOrder] = useState(false)
+
     const addClient = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         await axios
             .post(
@@ -124,19 +129,19 @@ const ClientListPage = () => {
                     serial_number,
                     temp_sensor,
 
-                    latest_certificate: latest_certificate === "есть" ? true : false,
-                    passport_meter: passport_meter === "есть" ? true : false,
+                    latest_certificate: latest_certificate === "есть",
+                    passport_meter: passport_meter === "есть",
                     correction_block_passport:
-                        correction_block_passport === "есть" ? true : false,
+                        correction_block_passport === "есть",
                     verification_with_stamp:
-                        verification_with_stamp === "есть" ? true : false,
-                    gaz_pribor_stamp: gaz_pribor_stamp === "есть" ? true : false,
-                    block_correction_dp: block_correction_dp === "есть" ? true : false,
-                    dt: dt === "есть" ? true : false,
-                    dd: dd === "есть" ? true : false,
-                    er_300000: er_300000 === "есть" ? true : false,
-                    visual_damage: visual_damage === "есть" ? true : false,
-                    mechanical_damage: mechanical_damage === "есть" ? true : false,
+                        verification_with_stamp === "есть",
+                    gaz_pribor_stamp: gaz_pribor_stamp === "есть",
+                    block_correction_dp: block_correction_dp === "есть",
+                    dt: dt === "есть",
+                    dd: dd === "есть",
+                    er_300000: er_300000 === "есть",
+                    visual_damage: visual_damage === "есть",
+                    mechanical_damage: mechanical_damage === "есть",
 
                     conclusion,
                     indications,
@@ -197,6 +202,8 @@ const ClientListPage = () => {
                             .catch(() => {
                             });
                     }
+                    setIsLoading(false)
+                    getOrders()
                 } else {
                     toast.success("Client created successfully");
 
@@ -228,6 +235,9 @@ const ClientListPage = () => {
                     setImage1("");
                     setImage2("");
                     setImage3("");
+
+                    setIsLoading(false)
+                    getOrders()
                 }
             })
             .catch(() => {
@@ -236,22 +246,23 @@ const ClientListPage = () => {
     };
 
     const [btn, setBtn] = useState(1)
-
     const [orders, setOrders] = useState([])
+    const getOrders = async () => {
+        setIsOrder(true)
+        const {data} = await axios.get(
+            API_PATH + `/main/orders/${
+                btn === 1
+                    ? ""
+                    : btn === 2
+                        ? "?today=2"
+                        : "?yesterday=3"}`
+        );
+        setOrders(data)
+        setIsOrder(false)
+    };
 
     useEffect(() => {
-        const getOrders = async () => {
-            const {data} = await axios.get(
-                API_PATH + `/main/orders/${
-                    btn === 1
-                        ? ""
-                        : btn === 2
-                            ? "?today=2"
-                            : "?yesterday=3"}`
-            );
-            setOrders(data)
-        };
-        getOrders();
+        getOrders()
     }, [btn]);
 
     return (
@@ -286,13 +297,67 @@ const ClientListPage = () => {
                     </div>
                     <div className="line"></div>
                     <div className="myTable" style={{height: 400, width: "100%"}}>
-                        <DataGrid
-                            rows={rows}
-                            columns={columns}
-                            pageSize={5}
-                            rowsPerPageOptions={[5]}
-                            disableSelectionOnClick
-                        />
+
+                        {isOrder ? <Loader/> :
+                            <table className="table TableStyle">
+                                <thead>
+                                <tr>
+                                    <td>№</td>
+                                    <td>Наименование организации</td>
+                                    <td>Дата</td>
+                                    <td>Марка счетчика газа</td>
+                                    <td>Заводские номера</td>
+                                    <td>Статус</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {orders &&
+                                    orders.map((item, index) => (
+                                        <tr
+                                            key={item.id}
+                                            onClick={() => {
+                                                setIsOpen(true)
+                                            }}
+                                            className=""
+                                        >
+                                            <th>{index + 1}</th>
+                                            <th>{item.name_org}</th>
+                                            <th>{item.created_time}</th>
+                                            <th>{item.meter_brand}</th>
+                                            <th>{item.serial_number}</th>
+                                            <th className={`status ${
+                                                item.status === 'received' ? "orange"
+                                                    : item.status === 'accountant' ? 'yellow'
+                                                        : item.status === 'end' ? 'red'
+                                                            : item.status === 'docs' ? 'pink'
+                                                                : item.status === 'payment' ? 'orange'
+                                                                    : item.status === 'test' ? 'test'
+                                                                        : 'blue'
+                                            }`}>
+                                                {
+                                                    item.status === 'received' ? "Принимающий"
+                                                        : item.status === 'accountant' ? 'Бухгалтер'
+                                                            : item.status === 'end' ? 'B стенд'
+                                                                : item.status === 'docs' ? 'Documents'
+                                                                    : item.status === 'payment' ? 'Оплата'
+                                                                        : item.status === 'test' ? 'Тест'
+                                                                            : 'Специалист'
+                                                }
+                                            </th>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        }
+
+                        {/*<DataGrid*/}
+                        {/*    rows={rows}*/}
+                        {/*    columns={columns}*/}
+                        {/*    pageSize={5}*/}
+                        {/*    rowsPerPageOptions={[5]}*/}
+                        {/*    disableSelectionOnClick*/}
+                        {/*/>*/}
                     </div>
                 </div>
             </div>
@@ -590,89 +655,99 @@ const ClientListPage = () => {
                                 />
                             </div>
 
-                            <div className="row">
+                            <div className="row ">
                                 <div className="col-lg-6">
-                                    <input
-                                        type="file"
-                                        id="xisobot"
-                                        name="xisobot"
-                                        autoFocus
-                                        className={`form-control  d-none`}
-                                        accept="image/png, image/jpg, image/jpeg, image/webp"
-                                        onChange={(e) => setImage(e.target.files[0])}
-                                    />
-                                    <label className="cursor" htmlFor="xisobot">
-                                        <img src={document} alt=""/>
-                                    </label>
-
-                                    {image && (
-                                        <label className="image ms-2 cursor" htmlFor="xisobot">
-                                            {image.name}
-                                        </label>
-                                    )}
+                                    <label className="a text-secondary" htmlFor="Images:">Фото:</label>
                                 </div>
-                                <div className="col-lg-6">
-                                    <input
-                                        type="file"
-                                        id="xisobot1"
-                                        className={`form-control d-none`}
-                                        accept="image/png, image/jpg, image/jpeg, image/webp"
-                                        onChange={(e) => setImage1(e.target.files[0])}
-                                    />
-                                    <label className="cursor" htmlFor="xisobot1">
-                                        <img src={document} alt=""/>
-                                    </label>
+                                <div className="col-lg-6 ">
+                                    <div className="row">
+                                        <div className="col-lg-6">
+                                            <input
+                                                type="file"
+                                                id="xisobot"
+                                                name="xisobot"
+                                                autoFocus
+                                                className={`form-control  d-none`}
+                                                accept="image/png, image/jpg, image/jpeg, image/webp"
+                                                onChange={(e) => setImage(e.target.files[0])}
+                                            />
+                                            <label className="cursor" htmlFor="xisobot">
+                                                <img src={document} alt=""/>
+                                            </label>
 
-                                    {image1 && (
-                                        <label className="image ms-2 cursor" htmlFor="xisobot1">
-                                            {image1.name}
-                                        </label>
-                                    )}
-                                </div>
-                                <div className="col-lg-6">
-                                    <input
-                                        type="file"
-                                        id="xisobot2"
-                                        className={`form-control  d-none`}
-                                        accept="image/png, image/jpg, image/jpeg, image/webp"
-                                        onChange={(e) => setImage2(e.target.files[0])}
-                                    />
-                                    <label className="cursor" htmlFor="xisobot2">
-                                        <img src={document} alt=""/>
-                                    </label>
+                                            {image && (
+                                                <label className="image ms-2 cursor" htmlFor="xisobot">
+                                                    {image.name}
+                                                </label>
+                                            )}
+                                        </div>
+                                        <div className="col-lg-6">
+                                            <input
+                                                type="file"
+                                                id="xisobot1"
+                                                className={`form-control d-none`}
+                                                accept="image/png, image/jpg, image/jpeg, image/webp"
+                                                onChange={(e) => setImage1(e.target.files[0])}
+                                            />
+                                            <label className="cursor" htmlFor="xisobot1">
+                                                <img src={document} alt=""/>
+                                            </label>
 
-                                    {image2 && (
-                                        <label className="image ms-2 cursor" htmlFor="xisobot2">
-                                            {image2.name}
-                                        </label>
-                                    )}
-                                </div>
-                                <div className="col-lg-6">
-                                    <input
-                                        type="file"
-                                        id="xisobot3"
-                                        className={`form-control  d-none`}
-                                        accept="image/png, image/jpg, image/jpeg, image/webp"
-                                        onChange={(e) => setImage3(e.target.files[0])}
-                                    />
-                                    <label className="cursor" htmlFor="xisobot3">
-                                        <img src={document} alt=""/>
-                                    </label>
+                                            {image1 && (
+                                                <label className="image ms-2 cursor" htmlFor="xisobot1">
+                                                    {image1.name}
+                                                </label>
+                                            )}
+                                        </div>
+                                        <div className="col-lg-6">
+                                            <input
+                                                type="file"
+                                                id="xisobot2"
+                                                className={`form-control  d-none`}
+                                                accept="image/png, image/jpg, image/jpeg, image/webp"
+                                                onChange={(e) => setImage2(e.target.files[0])}
+                                            />
+                                            <label className="cursor" htmlFor="xisobot2">
+                                                <img src={document} alt=""/>
+                                            </label>
 
-                                    {image3 && (
-                                        <label className="image ms-2 cursor" htmlFor="xisobot3">
-                                            {image3.name}
-                                        </label>
-                                    )}
+                                            {image2 && (
+                                                <label className="image ms-2 cursor" htmlFor="xisobot2">
+                                                    {image2.name}
+                                                </label>
+                                            )}
+                                        </div>
+                                        <div className="col-lg-6">
+                                            <input
+                                                type="file"
+                                                id="xisobot3"
+                                                className={`form-control  d-none`}
+                                                accept="image/png, image/jpg, image/jpeg, image/webp"
+                                                onChange={(e) => setImage3(e.target.files[0])}
+                                            />
+                                            <label className="cursor" htmlFor="xisobot3">
+                                                <img src={document} alt=""/>
+                                            </label>
+
+                                            {image3 && (
+                                                <label className="image ms-2 cursor" htmlFor="xisobot3">
+                                                    {image3.name}
+                                                </label>
+                                            )}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div className="modalFooter">
-                            <button type="submit" className="btn myBtn d-block w-100">
-                <span>
-                  <img src={plus} alt=""/>
-                </span>
+                            <button disabled={isLoading} type="submit" className="btn myBtn d-block w-100">
+                                {isLoading && (
+                                    <i className="spinner-border spinner-border-sm text-white text-dark me-2"></i>
+                                )}
+                                <span>
+                                  <img src={plus} alt=""/>
+                                </span>
                                 Добавить клиент
                             </button>
                         </div>

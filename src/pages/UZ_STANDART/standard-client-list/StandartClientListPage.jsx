@@ -1,13 +1,16 @@
 import download from "@/assets/download.svg"
 import upload from "@/assets/upload.svg"
 import pdf from "@/assets/pdf.svg"
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import {API_PATH} from "@/constants/index.js";
+import {toast} from "react-toastify";
+import {Loader} from "@/components/Loader.jsx";
 
 const StandardClientListPage = () => {
     const [btn, setBtn] = useState(1);
     const [orders, setOrders] = useState([]);
+    const [isLoading, setIsLoading] = useState(false)
 
     const formatDate = (dateTimeString) => {
         const date = new Date(dateTimeString);
@@ -22,21 +25,26 @@ const StandardClientListPage = () => {
         return formattedDate;
     };
 
-    useEffect(() => {
-        const getOrders = async () => {
+    const getOrders = useCallback(async () => {
+        setIsLoading(true);
+        try {
             const {data} = await axios(
                 API_PATH +
                 `/main/list-for-uzstandard/${
-                    btn === 1
-                        ? ""
-                        : btn === 2
-                            ? "?today=2"
-                            : "?yesterday=3"}`
+                    btn === 1 ? "" : btn === 2 ? "?today=2" : "?yesterday=3"
+                }`
             );
             setOrders(data);
-        };
-        getOrders();
+            setIsLoading(false)
+        } catch (error) {
+            toast().error("Error getting orders:", error);
+            setIsLoading(false)
+        }
     }, [btn]);
+
+    useEffect(() => {
+        getOrders();
+    }, [getOrders]);
 
     return (
         <>
@@ -65,38 +73,42 @@ const StandardClientListPage = () => {
                     </div>
                 </div>
 
-                <table className="table TableStyle">
-                    <thead>
-                    <tr>
-                        <td>№</td>
-                        <td>Наименование организации</td>
-                        <td>Дата</td>
-                        <td>Марка счетчика газа</td>
-                        <td>Протокол</td>
-                        <td>Зав.№ кор</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {orders && orders.map((item) => (
-                        <tr key={item.id}>
-                            <th key={item.id}>{item.id}</th>
-                            <th>{item.name_org}</th>
-                            <th>{formatDate(item.created_time)}</th>
-                            <th>{item.meter_brand}</th>
-                            <th className='file'>
-                                <p className={'mb-2'}><span className={'me-2'}>
-                                    <img src={pdf} alt=""/></span>
-                                    UzAvto Number.pdf</p>
-                                <button className="btn"><span><img src={download} alt=""/></span>Скачать</button>
-                            </th>
-                            <th>
-                                <button className="btn"><span><img src={upload} alt=""/></span>Загрузить</button>
+                {isLoading ? <Loader/> :
 
-                            </th>
+                    <table className="table TableStyle">
+                        <thead>
+                        <tr>
+                            <td>№</td>
+                            <td>Наименование организации</td>
+                            <td>Дата</td>
+                            <td>Марка счетчика газа</td>
+                            <td>Протокол</td>
+                            <td>Зав.№ кор</td>
                         </tr>
-                    ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        {orders && orders.map((item) => (
+                            <tr key={item.id}>
+                                <th key={item.id}>{item.id}</th>
+                                <th>{item.name_org}</th>
+                                <th>{formatDate(item.created_time)}</th>
+                                <th>{item.meter_brand}</th>
+                                <th className='file'>
+                                    <p className={'mb-2'}><span className={'me-2'}>
+                                    <img src={pdf} alt=""/></span>
+                                        UzAvto Number.pdf</p>
+                                    <button className="btn"><span><img src={download} alt=""/></span>Скачать</button>
+                                </th>
+                                <th>
+                                    <button className="btn"><span><img src={upload} alt=""/></span>Загрузить</button>
+
+                                </th>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+
+                }
             </div>
         </>);
 };

@@ -1,8 +1,9 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
-import {API_PATH} from "../../../constants";
+import {API_PATH} from "@/constants";
 import {ReactSearchAutocomplete} from "react-search-autocomplete";
 import {toast} from "react-toastify";
+import {Loader} from "@/components/Loader.jsx";
 
 const SpecialistCliestListPage = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,10 +13,13 @@ const SpecialistCliestListPage = () => {
     const [order, setOrder] = useState({});
     const [selectedProducts, setSelectedProducts] = useState([]);
 
+    const [isLoading, setIsLoading] = useState(false)
 
     const getProducts = async () => {
+        setIsLoading(true)
         const {data} = await axios(API_PATH + "/main/product-list/");
         setAvailableProducts(data);
+        setIsLoading(false)
     };
     const getOrders = async () => {
         const {data} = await axios(
@@ -40,15 +44,9 @@ const SpecialistCliestListPage = () => {
     useEffect(() => {
 
         getOrders();
+        getProducts();
 
     }, [btn]);
-
-    useEffect(() => {
-    }, [orders]);
-
-    useEffect(() => {
-        getProducts();
-    },[])
 
     const getOrder = (item) => {
         setOrder(item);
@@ -117,8 +115,9 @@ const SpecialistCliestListPage = () => {
             })
         );
         setIsOpen(false);
+        getOrders();
+        getProducts();
         toast.success("Ma'lumotlar jo'natildi");
-        getOrders().then(r => console.log(r));
         setSelectedProducts([]);
     };
 
@@ -126,82 +125,91 @@ const SpecialistCliestListPage = () => {
         <>
             <div className="SpecialistCliestListPage RightStyle">
                 <h1>Список клиентов</h1>
-                <div className="filterWrap FilterStyle">
-                    <div
-                        onClick={() => setBtn(1)}
-                        className={`filterBtn ${btn === 1 ? "active" : ""}`}
-                    >
-                        Все (20 000)
-                    </div>
-                    <div
-                        onClick={() => setBtn(2)}
-                        className={`filterBtn ${btn === 2 ? "active" : ""}`}
-                    >
-                        Сегодня (50)
-                    </div>
-                    <div
-                        onClick={() => setBtn(3)}
-                        className={`filterBtn ${btn === 3 ? "active" : ""}`}
-                    >
-                        Вчера (60)
-                    </div>
-                    <div
-                        onClick={() => setBtn(4)}
-                        className={`filterBtn ${btn === 4 ? "active" : ""}`}
-                    >
-                        Неделя (300)
-                    </div>
-                    <div
-                        onClick={() => setBtn(5)}
-                        className={`filterBtn ${btn === 5 ? "active" : ""}`}
-                    >
-                        Месяц (1 000)
-                    </div>
-                    <div
-                        onClick={() => setBtn(6)}
-                        className={`filterBtn ${btn === 6 ? "active" : ""}`}
-                    >
-                        Год (12 000){" "}
-                    </div>
-                </div>
-
-                <table className="table TableStyle">
-                    <thead>
-                    <tr>
-                        <td>№</td>
-                        <td>Наименование организации</td>
-                        <td>Дата</td>
-                        <td>Марка счетчика газа</td>
-                        <td>Заводские номера</td>
-                        <td>Статус</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {orders &&
-                        orders.map((item) => (
-                            <tr
-                                key={item.id}
-                                onClick={() => {
-                                    setIsOpen(true), getOrder(item);
-                                }}
-                                className=""
+                {orders.length === 0 ? <h5 className="text-center py-5">Not enough data</h5> :
+                    <>
+                        <div className="filterWrap FilterStyle">
+                            <div
+                                onClick={() => setBtn(1)}
+                                className={`filterBtn ${btn === 1 ? "active" : ""}`}
                             >
-                                <th>{item.id}</th>
-                                <th>{item.name_org}</th>
-                                <th>{item.created_time}</th>
-                                <th>{item.meter_brand}</th>
-                                <th>{item.serial_number}</th>
-                                <th
-                                    className={`status ${
-                                        item.is_paid ? "status-green" : "status-red"
-                                    }`}
-                                >
-                                    {item.is_paid ? "Оплаченно" : "Не оплачено"}
-                                </th>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                Все (20 000)
+                            </div>
+                            <div
+                                onClick={() => setBtn(2)}
+                                className={`filterBtn ${btn === 2 ? "active" : ""}`}
+                            >
+                                Сегодня (50)
+                            </div>
+                            <div
+                                onClick={() => setBtn(3)}
+                                className={`filterBtn ${btn === 3 ? "active" : ""}`}
+                            >
+                                Вчера (60)
+                            </div>
+                            <div
+                                onClick={() => setBtn(4)}
+                                className={`filterBtn ${btn === 4 ? "active" : ""}`}
+                            >
+                                Неделя (300)
+                            </div>
+                            <div
+                                onClick={() => setBtn(5)}
+                                className={`filterBtn ${btn === 5 ? "active" : ""}`}
+                            >
+                                Месяц (1 000)
+                            </div>
+                            <div
+                                onClick={() => setBtn(6)}
+                                className={`filterBtn ${btn === 6 ? "active" : ""}`}
+                            >
+                                Год (12 000){" "}
+                            </div>
+                        </div>
+
+                        {isLoading ? <Loader/> :
+                            <table className="table TableStyle">
+                                <thead>
+                                <tr>
+                                    <td>№</td>
+                                    <td>Наименование организации</td>
+                                    <td>Дата</td>
+                                    <td>Марка счетчика газа</td>
+                                    <td>Заводские номера</td>
+                                    <td>Статус</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {orders &&
+                                    orders.map((item) => (
+                                        <tr
+                                            key={item.id}
+                                            onClick={() => {
+                                                setIsOpen(true), getOrder(item);
+                                            }}
+                                            className=""
+                                        >
+                                            <th>{item.id}</th>
+                                            <th>{item.name_org}</th>
+                                            <th>{item.created_time}</th>
+                                            <th>{item.meter_brand}</th>
+                                            <th>{item.serial_number}</th>
+                                            <th
+                                                className={`status ${
+                                                    item.is_paid ? "status-green" : "status-red"
+                                                }`}
+                                            >
+                                                {item.is_paid ? "Оплаченно" : "Не оплачено"}
+                                            </th>
+                                        </tr>
+                                    ))}
+
+                                </tbody>
+                            </table>
+                        }
+                    </>
+                }
+
+
             </div>
 
             <div className={`ModalStyle ${isOpen && "active"}`}>

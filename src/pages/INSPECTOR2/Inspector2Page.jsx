@@ -1,7 +1,8 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {API_PATH} from "../../constants";
 import {toast} from "react-toastify";
+import {Loader} from "@/components/Loader.jsx";
 
 const Inspector2Page = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,15 +10,27 @@ const Inspector2Page = () => {
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState({});
 
-    useEffect(() => {
-        const getOrders = async () => {
+    const [isLoading, setIsLoading] = useState(false)
+
+    const getOrders = useCallback(async () => {
+        setIsLoading(true)
+        try {
             const {data} = await axios(
-                API_PATH + `/main/inspector-order-list${btn === 1 ? "" : btn === 2 ? "?tady=1" : "?yesterday=28"}`
+                API_PATH +
+                `/main/inspector-order-list${
+                    btn === 1 ? "" : btn === 2 ? "?tady=1" : "?yesterday=28"}`
             );
             setOrders(data);
-        };
-        getOrders();
+            setIsLoading(false)
+        } catch (error) {
+            toast.error("Error getting orders:", error);
+            setIsLoading(false)
+        }
     }, [btn]);
+
+    useEffect(() => {
+        getOrders();
+    }, [getOrders]);
 
     const getOrder = (item) => {
         setOrder(item);
@@ -29,6 +42,7 @@ const Inspector2Page = () => {
         });
         setIsOpen(false);
         toast.success("Ma'lumotlar jo'natildi");
+        getOrders()
     };
 
     return (
@@ -56,44 +70,48 @@ const Inspector2Page = () => {
                     </div>
                 </div>
 
-                <table className="table TableStyle">
-                    <thead>
-                    <tr>
-                        <td>№</td>
-                        <td>Наименование организации</td>
-                        <td>Дата</td>
-                        <td>Марка счетчика газа</td>
-                        <td>Заводские номера</td>
-                        <td>Статус</td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {orders &&
-                        orders.map((item) => (
-                            <tr
-                                key={item.id}
-                                onClick={() => {
-                                    setIsOpen(true);
-                                    getOrder(item);
-                                }}
-                                className=""
-                            >
-                                <th>{item.id}</th>
-                                <th>{item.name_org}</th>
-                                <th>{item.created_time}</th>
-                                <th>{item.meter_brand}</th>
-                                <th>{item.serial_number}</th>
-                                <th
-                                    className={`status ${
-                                        item.is_paid ? "status-green" : "status-red"
-                                    }`}
+                {isLoading ? <Loader/> :
+
+                    <table className="table TableStyle">
+                        <thead>
+                        <tr>
+                            <td>№</td>
+                            <td>Наименование организации</td>
+                            <td>Дата</td>
+                            <td>Марка счетчика газа</td>
+                            <td>Заводские номера</td>
+                            <td>Статус</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {orders &&
+                            orders.map((item) => (
+                                <tr
+                                    key={item.id}
+                                    onClick={() => {
+                                        setIsOpen(true);
+                                        getOrder(item);
+                                    }}
+                                    className=""
                                 >
-                                    {item.is_paid ? "Оплаченно" : "Не оплачено"}
-                                </th>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                    <th>{item.id}</th>
+                                    <th>{item.name_org}</th>
+                                    <th>{item.created_time}</th>
+                                    <th>{item.meter_brand}</th>
+                                    <th>{item.serial_number}</th>
+                                    <th
+                                        className={`status ${
+                                            item.is_paid ? "status-green" : "status-red"
+                                        }`}
+                                    >
+                                        {item.is_paid ? "Оплаченно" : "Не оплачено"}
+                                    </th>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+
+                }
             </div>
 
             <div className={`ModalStyle ${isOpen && "active"}`}>

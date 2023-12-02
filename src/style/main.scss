@@ -142,6 +142,12 @@ body {
     }
   }
 
+  .btn {
+    &:disabled {
+      background-color: #FF6E2E;
+    }
+  }
+
   .myBtn2 {
     transition: all 0.4s ease-in-out;
     border: none !important;
@@ -393,6 +399,9 @@ body {
       padding: 0;
       background: #f8f8f8;
       box-shadow: inset 10px 1px 10px 0px #c0c0c024;
+      height: 100vh;
+      overflow: hidden;
+      overflow-y: auto;
     }
   }
 
@@ -607,6 +616,46 @@ body {
         width: 1px;
         height: 1px;
       }
+    }
+  }
+
+  .status {
+    color: #000;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 0;
+
+    &.blue {
+      background: rgba(49, 116, 186, 0.20);
+    }
+
+    &.yellow {
+      background: rgba(255, 199, 114, 0.20);
+    }
+
+    &.orange {
+      background: rgba(255, 110, 46, 0.20);
+    }
+
+    &.receiver {
+      background: rgba(30, 98, 169, 0.2);
+    }
+
+    &.red {
+      background: rgba(207, 84, 188, 0.20);
+    }
+
+    &.pink {
+      background: rgba(148, 97, 255, 0.20);
+    }
+
+    &.test {
+      background: rgba(224, 151, 41, 0.2);
     }
   }
 

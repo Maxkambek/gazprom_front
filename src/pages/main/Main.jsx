@@ -128,7 +128,6 @@ const Main = () => {
                             </div>
 
                             <button disabled={isLoading} className="btn myBtn" type="submit">
-
                                 {isLoading && (
                                     <i className="spinner-border spinner-border-sm text-white text-dark me-2"></i>
                                 )}

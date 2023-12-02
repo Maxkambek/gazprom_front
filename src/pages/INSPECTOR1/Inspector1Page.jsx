@@ -1,7 +1,8 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {API_PATH} from "../../constants";
 import {toast} from "react-toastify";
+import {Loader} from "@/components/Loader.jsx";
 
 const Inspector1Page = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -9,18 +10,27 @@ const Inspector1Page = () => {
     const [orders, setOrders] = useState([]);
     const [order, setOrder] = useState({});
 
-    useEffect(() => {
-        const getOrders = async () => {
+    const [isLoading, setIsLoading] = useState(false)
+
+    const getOrders = useCallback(async () => {
+        setIsLoading(true)
+        try {
             const {data} = await axios(
                 API_PATH +
                 `/main/inspector-order-list${
-                    btn === 1 ? "" : btn === 2 ? "?tady=1" : "?yesterday=28"
-                }`
+                    btn === 1 ? "" : btn === 2 ? "?tady=1" : "?yesterday=28"}`
             );
             setOrders(data);
-        };
-        getOrders();
+            setIsLoading(false)
+        } catch (error) {
+            toast.error("Error getting orders:", error);
+            setIsLoading(false)
+        }
     }, [btn]);
+
+    useEffect(() => {
+        getOrders();
+    }, [getOrders]);
 
     const getOrder = (item) => {
         setOrder(item);
@@ -28,10 +38,11 @@ const Inspector1Page = () => {
 
     const sendInspector = async (item_id, status) => {
         await axios.patch(API_PATH + `/main/inspector-1/${item_id}/`, {
-            is_checked: status,
+            is_checked: status
         });
         setIsOpen(false);
         toast.success("Ma'lumotlar jo'natildi");
+        getOrders()
     };
 
     return (
@@ -59,45 +70,48 @@ const Inspector1Page = () => {
                     </div>
                 </div>
 
-                <table className="table TableStyle">
-                    <thead>
-                    <tr>
-                        <td>№</td>
-                        <td>Наименование организации</td>
-                        <td>Дата</td>
-                        <td>Марка счетчика газа</td>
-                        <td>Заводские номера</td>
-                        <td>Статус</td>
-                    </tr>
-                    </thead>
-                    <tbody>
+                {isLoading ? <Loader/> :
+                    <table className="table TableStyle">
+                        <thead>
+                        <tr>
+                            <td>№</td>
+                            <td>Наименование организации</td>
+                            <td>Дата</td>
+                            <td>Марка счетчика газа</td>
+                            <td>Заводские номера</td>
+                            <td>Статус</td>
+                        </tr>
+                        </thead>
 
-                    {orders &&
-                        orders.map((item) => (
-                            <tr
-                                key={item.id}
-                                onClick={() => {
-                                    setIsOpen(true);
-                                    getOrder(item);
-                                }}
-                                className=""
-                            >
-                                <th>{item.id}</th>
-                                <th>{item.name_org}</th>
-                                <th>{item.created_time}</th>
-                                <th>{item.meter_brand}</th>
-                                <th>{item.serial_number}</th>
-                                <th
-                                    className={`status ${
-                                        item.is_paid ? "status-green" : "status-red"
-                                    }`}
+                        <tbody>
+
+                        {orders &&
+                            orders.map((item) => (
+                                <tr
+                                    key={item.id}
+                                    onClick={() => {
+                                        setIsOpen(true);
+                                        getOrder(item);
+                                    }}
+                                    className=""
                                 >
-                                    {item.is_paid ? "Оплаченно" : "Не оплачено"}
-                                </th>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                                    <th>{item.id}</th>
+                                    <th>{item.name_org}</th>
+                                    <th>{item.created_time}</th>
+                                    <th>{item.meter_brand}</th>
+                                    <th>{item.serial_number}</th>
+                                    <th
+                                        className={`status ${
+                                            item.is_paid ? "status-green" : "status-red"
+                                        }`}
+                                    >
+                                        {item.is_paid ? "Оплаченно" : "Не оплачено"}
+                                    </th>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                }
             </div>
 
             <div className={`ModalStyle ${isOpen && "active"}`}>
@@ -359,42 +373,33 @@ const Inspector1Page = () => {
                         </div>
 
                         {/* <Autocomplete
-              multiple
-              id="checkboxes-tags-demo"
-              options={products}
-              disableCloseOnSelect
-              getOptionLabel={(option) => option.name}
-              renderOption={(props, option, { selected }) => (
-                <li {...props}>
-                  <Checkbox
-                    // icon={icon}
-                    // checkedIcon={checkedIcon}
-                    style={{ marginRight: 8 }}
-                    checked={selected}
-                  />
-                  {option.name}
-                </li>
-              )}
-              style={{ width: 500 }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Checkboxes"
-                  placeholder="Favorites"
-                />
-              )}
-            /> */}
+                              multiple
+                              id="checkboxes-tags-demo"
+                              options={products}
+                              disableCloseOnSelect
+                              getOptionLabel={(option) => option.name}
+                              renderOption={(props, option, { selected }) => (
+                                <li {...props}>
+                                  <Checkbox
+                                    // icon={icon}
+                                    // checkedIcon={checkedIcon}
+                                    style={{ marginRight: 8 }}
+                                    checked={selected}
+                                  />
+                                  {option.name}
+                                </li>
+                              )}
+                              style={{ width: 500 }}
+                              renderInput={(params) => (
+                                <TextField
+                                  {...params}
+                                  label="Checkboxes"
+                                  placeholder="Favorites"
+                                />
+                              )}
+                            /> */}
 
-                        <div className="formWrap">
-                            <label htmlFor="Замена комплектующих:">
-                                Замена комплектующих:
-                            </label>
-                            <input
-                                type="text"
-                                id="Замена комплектующих:"
-                                className="form-control"
-                            />
-                        </div>
+
                     </div>
 
                     <div className="modalFooter d-flex justify-content-between">
