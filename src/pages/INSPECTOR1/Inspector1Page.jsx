@@ -17,7 +17,7 @@ const Inspector1Page = () => {
         try {
             const {data} = await axios(
                 API_PATH +
-                `/main/inspector-order-list${
+                `/main/inspector1-order-list${
                     btn === 1 ? "" : btn === 2 ? "?tady=1" : "?yesterday=28"}`
             );
             setOrders(data);
@@ -54,19 +54,19 @@ const Inspector1Page = () => {
                         onClick={() => setBtn(1)}
                         className={`filterBtn ${btn === 1 ? "active" : ""}`}
                     >
-                        Все (20 000)
+                        Все 
                     </div>
                     <div
                         onClick={() => setBtn(2)}
                         className={`filterBtn ${btn === 2 ? "active" : ""}`}
                     >
-                        Сегодня (50)
+                        Сегодня
                     </div>
                     <div
                         onClick={() => setBtn(3)}
                         className={`filterBtn ${btn === 3 ? "active" : ""}`}
                     >
-                        Вчера (60)
+                        Вчера
                     </div>
                 </div>
 

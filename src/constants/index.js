@@ -1,4 +1,4 @@
-export const API_PATH = "http://192.168.1.6:8000";
+export const API_PATH = "http://127.0.0.1:8001";
 
 export const TOKEN = "GAZ/TOKEN";
 export const USER_ROLE = "GAZ/USER_ROLE";

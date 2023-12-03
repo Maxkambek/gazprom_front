@@ -94,10 +94,12 @@ const StandardClientListPage = () => {
                                 <th>{formatDate(item.created_time)}</th>
                                 <th>{item.meter_brand}</th>
                                 <th className='file'>
-                                    <p className={'mb-2'}><span className={'me-2'}>
+                                    
+                                    <p className={'mb-2 mt-2'}><span className={'me-2'}>
                                     <img src={pdf} alt=""/></span>
                                         UzAvto Number.pdf</p>
                                     <button className="btn"><span><img src={download} alt=""/></span>Скачать</button>
+                                    
                                 </th>
                                 <th>
                                     <button className="btn"><span><img src={upload} alt=""/></span>Загрузить</button>
